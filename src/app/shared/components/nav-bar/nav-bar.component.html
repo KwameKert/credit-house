@@ -1,10 +1,17 @@
 <mat-toolbar color="primary">
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with menu icon"
-  >
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Credit Data</span>
+  <div class="w-full">
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+      (click)="this.sideBarService.toggleSideBar()"
+    >
+      <mat-icon>{{ Icons.Menu }}</mat-icon>
+    </button>
+    <span>Credit Data</span>
+
+    <div class="float-right">
+      <app-profile class="float-right"></app-profile>
+    </div>
+  </div>
 </mat-toolbar>

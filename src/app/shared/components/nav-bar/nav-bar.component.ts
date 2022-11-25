@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarService } from '../../../core/sidebar.service';
+import { Icons } from 'src/app/core/models/common/icons';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
-
-  constructor() { }
+  public Icons = Icons;
+  constructor(public sideBarService: SidebarService) { }
 
   ngOnInit(): void {
   }

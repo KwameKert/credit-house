@@ -1,0 +1,38 @@
+.container {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .success {
+    @apply text-green-500;
+  }
+  
+  .error {
+    @apply text-red-500;
+  }
+  
+  .info {
+    @apply text-blue-500;
+  }
+  
+  .warn {
+    @apply text-yellow-500;
+  }
+  
+  .message {
+    width: 100%;
+    margin-left: 5%;
+    margin-top: 0.5%;
+    overflow-wrap: anywhere;
+  }
+  
+  .tab-close {
+    font-weight: 300;
+    color: #2196f3;
+  
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  

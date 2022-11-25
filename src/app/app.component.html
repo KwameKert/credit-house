@@ -1,5 +1,25 @@
-<app-nav-bar></app-nav-bar>
-<mat-sidenav-container class="example-container">
-  <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
-  <mat-sidenav-content><router-outlet></router-outlet> </mat-sidenav-content>
-</mat-sidenav-container>
+<div class="root">
+  <app-nav-bar></app-nav-bar>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+      opened="{{ this.sideBarService.sideBarOpen }}"
+      class="sidenav"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    >
+      <mat-list>
+        <app-menu-list-item
+          *ngFor="let item of navItems"
+          [item]="item"
+        ></app-menu-list-item>
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="main-content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<app-git-version-modal></app-git-version-modal>

@@ -1,0 +1,55 @@
+<div *ngIf="modalType === ModalTypeCategory.Error">
+  <div mat-dialog-content>
+    <div>
+      <mat-icon>{{ Icons.ERROR }}</mat-icon>
+      <p>{{ messageTitle }}</p>
+    </div>
+
+    <p>{{ messageDescription }}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancelModal()" color="primary">OK</button>
+  </div>
+</div>
+
+<div *ngIf="modalType === ModalTypeCategory.Confirm">
+  <div mat-dialog-content>
+    <div>
+      <mat-icon>{{ Icons.HELP }}</mat-icon>
+      <p>{{ messageTitle }}</p>
+    </div>
+
+    <p>{{ messageDescription }}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancelModal()" color="primary">OK</button>
+    <button mat-button (click)="confirmDialog()" color="primary">
+      {{ confirmButtonText ? confirmButtonText : "CONFIRM" }}
+    </button>
+  </div>
+</div>
+
+<div *ngIf="modalType === ModalTypeCategory.List">
+  <div mat-dialog-content>
+    <div class="flex flex-col justify-center">
+      <div class="flex justify-center">
+        <mat-icon class="icon-display">{{ Icons.HELP }}</mat-icon> <br />
+      </div>
+      <div class="flex justify-center">
+        <p class="text-lg font-semibold">{{ messageTitle }}</p>
+      </div>
+      <div class="flex justify-center">
+        <p class="text-lg">{{ messageDescription }}</p>
+      </div>
+    </div>
+
+    <div class="flex justify-center">
+      <div class="flex flex-col">
+        <p *ngFor="let listItem of this.data.listArray">{{ listItem }}</p>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions class="flex justify-center">
+    <button mat-button (click)="cancelModal()" color="primary">OK</button>
+  </div>
+</div>
