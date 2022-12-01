@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CompanyListViewComponent } from './company-list-view/company-list-view.component';
 import { Routes, RouterModule } from '@angular/router';
 import { Route } from 'src/app/core/models/common';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
   {
     path: Route.COMPANY,
     component: CompanyListViewComponent,
-    //canActivate: [AuthGuard, PageGuarda]
+    canActivate: [AuthGuard],
   },
 ];
 

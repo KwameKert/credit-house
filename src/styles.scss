@@ -15,9 +15,46 @@
   font-family: Nunito, "Helvetica Neue", sans-serif !important;
 }
 html, body { height: 100%; margin: 0; }
-.material-icons{
-    font-family: 'Material Icons' !important;
+
+.bg-image {
+  background-image: url("./assets/images/bg-image.jpeg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 
-  
+.material-icons{
+  font-family: 'Material Icons' !important;
+}
+
+
+.section-container {
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px) {
+  .section-container {
+    padding-left: 3.25rem;
+    padding-right: 3.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    max-width: 1280px;
+  }
+}

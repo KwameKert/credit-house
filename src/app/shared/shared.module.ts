@@ -6,7 +6,14 @@ import { NotificationComponent } from './components/notification/notification.co
 import { ErrorAndConfirmationModalComponent } from './components/error-and-confirmation-modal/error-and-confirmation-modal.component';
 import { GitVersionModalComponent } from './components/git-version-modal/git-version-modal.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { BaseSelectFieldComponent } from './components/base-select-field/base-select-field.component';
+import { BaseInputFieldComponent } from './components/base-input-field/base-input-field.component';
+import { BaseButtonComponent } from './components/base-button/base-button.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuListItemComponent } from './components/menu-list-item/menu-list-item.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +23,31 @@ import { MenuListItemComponent } from './components/menu-list-item/menu-list-ite
     GitVersionModalComponent,
     ProfileComponent,
     MenuListItemComponent,
+    SideBarComponent,
+    BaseSelectFieldComponent,
+    BaseInputFieldComponent,
+    BaseButtonComponent,
+    LoaderComponent,
   ],
-  imports: [CommonModule, MaterialModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule,
+  ],
   exports: [
     MaterialModule,
     NavBarComponent,
     GitVersionModalComponent,
     MenuListItemComponent,
+    SideBarComponent,
+    BaseSelectFieldComponent,
+    BaseInputFieldComponent,
+    BaseButtonComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule,
   ],
 })
 export class SharedModule {}

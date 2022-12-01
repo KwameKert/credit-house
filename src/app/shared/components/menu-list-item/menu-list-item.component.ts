@@ -8,7 +8,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { NavItem } from './nav-item';
-import { SidebarService } from '../../../core/sidebar.service';
+import { SidebarService } from 'src/app/core/services/sidebar.service';
 
 @Component({
   selector: 'app-menu-list-item',

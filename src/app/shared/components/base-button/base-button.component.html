@@ -1,0 +1,94 @@
+<div [ngSwitch]="variation">
+  <div *ngSwitchCase="'basic'">
+    <button
+      [id]="id"
+      [ngClass]="buttonClass"
+      [type]="type"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="triggerButtonClick()"
+      mat-button
+    >
+      <div class="flex flex-row space-x-2 justify-center items-center">
+        <div *ngIf="buttonIcon" class="flex self-center">
+          <mat-icon [ngClass]="iconClass">{{ buttonIcon }}</mat-icon>
+        </div>
+        <div class="flex self-center">
+          {{ loading ? loadingText : buttonText }}
+        </div>
+      </div>
+    </button>
+  </div>
+  <div *ngSwitchCase="'flat'">
+    <button
+      [ngClass]="buttonClass"
+      [id]="id"
+      [type]="type"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="triggerButtonClick()"
+      mat-flat-button
+    >
+      {{ loading ? loadingText : buttonText }}
+    </button>
+  </div>
+  <div *ngSwitchCase="'raised'">
+    <button
+      [ngClass]="buttonClass"
+      [type]="type"
+      [id]="id"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="triggerButtonClick()"
+      mat-raised-button
+    >
+      {{ loading ? loadingText : buttonText }}
+    </button>
+  </div>
+  <div *ngSwitchCase="'stroked'">
+    <button
+      [ngClass]="buttonClass"
+      [type]="type"
+      [color]="color"
+      [id]="id"
+      [disabled]="disabled"
+      (click)="triggerButtonClick()"
+      mat-stroked-button
+    >
+      {{ loading ? loadingText : buttonText }}
+    </button>
+  </div>
+  <div *ngSwitchCase="'icon'">
+    <button
+      [ngClass]="buttonClass"
+      [type]="type"
+      [color]="color"
+      [id]="id"
+      [disabled]="disabled"
+      (click)="triggerButtonClick()"
+      mat-icon-button
+    >
+      <!-- <i [ngClass]="buttonIcon"></i> -->
+      <mat-icon *ngIf="buttonIcon"> {{ buttonIcon }}</mat-icon>
+      <div *ngIf="!buttonIcon" class="flex justify-center items-center">
+        <ng-content></ng-content>
+      </div>
+    </button>
+  </div>
+  <div *ngSwitchCase="'fab'">
+    <button
+      mat-fab
+      [ngClass]="buttonClass"
+      [type]="type"
+      [id]="id"
+      [color]="color"
+      [disabled]="disabled"
+      (click)="triggerButtonClick()"
+    >
+      <mat-icon> {{ buttonIcon }}</mat-icon>
+    </button>
+  </div>
+  <div *ngSwitchDefault>
+    <p>No material button variation specified</p>
+  </div>
+</div>

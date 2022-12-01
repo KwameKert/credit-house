@@ -1,1 +1,35 @@
-<p>login-form works!</p>
+<form
+  class="h-full"
+  [formGroup]="loginForm"
+  (ngSubmit)="login(loginForm.value)"
+>
+  <div class="mt-10">
+    <app-base-input-field
+      label="Username"
+      hint="Your registered username "
+      type="text"
+      [control]="loginForm.controls['username']"
+    ></app-base-input-field>
+  </div>
+  <div class="mt-5">
+    <app-base-input-field
+      label="Password"
+      hint="Passwords are case sensitive"
+      type="password"
+      [control]="loginForm.controls['password']"
+    ></app-base-input-field>
+  </div>
+
+  <div class="mt-10 hidden md:block">
+    <app-base-button
+      buttonClass="font-bold text-base btn-primary w-full"
+      buttonText="Sign in"
+      type="submit"
+      color="primary"
+      variation="raised"
+      [disabled]="!loginForm.valid"
+      [loading]="isLoggingIn"
+      loadingText="Signing in"
+    ></app-base-button>
+  </div>
+</form>

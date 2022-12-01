@@ -1,1 +1,11 @@
-<p>login works!</p>
+<div class="h-full w-full flex flex-col justify-center items-center bg-image">
+  <div class="w-[25rem] p-8 card rounded-2xl bg-white">
+    <app-auth-header
+      [headline]="name ? name : 'Welcome back'"
+      [description]="
+        name ? 'Enter your password to continue' : 'Enter credentials'
+      "
+    ></app-auth-header>
+    <app-login-form (credentials)="loginEvent($event)"></app-login-form>
+  </div>
+</div>

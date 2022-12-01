@@ -1,0 +1,54 @@
+<mat-form-field [ngClass]="inputClass" class="w-full" [appearance]="appearance">
+  <mat-label *ngIf="label">{{ label }}</mat-label>
+  <input
+    *ngIf="type !== 'textarea'"
+    [type]="type !== 'password' ? type : hide ? 'password' : 'text'"
+    [placeholder]="placeholder"
+    [formControl]="control"
+    [matAutocomplete]="auto"
+    matInput
+  />
+  <mat-icon
+    [ngClass]="iconClass"
+    *ngIf="icon && iconPosition === 'start'"
+    matPrefix
+    >{{ icon }}</mat-icon
+  >
+  <mat-icon
+    [ngClass]="iconClass"
+    *ngIf="icon && iconPosition === 'end'"
+    matSuffix
+    >{{ icon }}</mat-icon
+  >
+  <button
+    *ngIf="type === 'password'"
+    type="button"
+    mat-icon-button
+    matSuffix
+    (click)="hide = !hide"
+    [attr.aria-label]="'Hide password'"
+    [attr.aria-pressed]="hide"
+  >
+    <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+  </button>
+  <textarea
+    *ngIf="type === 'textarea'"
+    matInput
+    [type]="type"
+    [placeholder]="placeholder"
+    [formControl]="control"
+  >
+  </textarea>
+  <div matSuffix mat-icon-button *ngIf="icon">
+    <i [ngClass]="icon"></i>
+  </div>
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option
+      *ngFor="let option of filteredOptions | async"
+      [value]="option?.value"
+    >
+      {{ option?.label }}
+    </mat-option>
+  </mat-autocomplete>
+  <mat-error *ngIf="control">{{ errorMessage }}</mat-error>
+</mat-form-field>

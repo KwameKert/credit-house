@@ -8,6 +8,9 @@ import { PagesModule } from './pages/pages.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from './shared/shared.module';
+import { metaReducers, reducers } from './store/reducers';
+import * as fromAuthEffects from './store/effects/auth.effects';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,10 +18,13 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     PagesModule,
     SharedModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+    }),
+    EffectsModule.forRoot([fromAuthEffects.AuthEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

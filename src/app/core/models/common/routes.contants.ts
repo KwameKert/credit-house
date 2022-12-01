@@ -5,4 +5,5 @@ export enum Route {
   TRANSACTION = 'transaction',
   CUSTOMER = 'customer',
   DASHBOARD = 'dashboard',
+  LOGIN = 'login',
 }

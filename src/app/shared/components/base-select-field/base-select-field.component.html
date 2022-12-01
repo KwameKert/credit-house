@@ -1,0 +1,51 @@
+<div class="w-full my-2" *ngIf="type === 'ng-select'">
+  <ng-select
+    class="select-lg mt-2"
+    [placeholder]="label"
+    [items]="options"
+    [loading]="loading"
+    [notFoundText]="notFoundText"
+    [closeOnSelect]="closeOnSelect"
+    [multiple]="multiple"
+    [addTag]="addTag"
+    [addTagText]="addTagText"
+    [bindLabel]="bindLabel"
+    [bindValue]="bindValue"
+    typeToSearchText="Please enter {{ minLengthTerm }} or more characters"
+    [typeahead]="typeAhead"
+    [formControl]="control"
+    [ngClass]="{
+      'border-red-500 focus:ring-red-600':
+        !!control?.errors && !control?.pristine
+    }"
+  >
+    <ng-template ng-option-tmp let-item="item">
+      <div>
+        <p class="text-sm">
+          {{ itemName ? (item[itemName] | titlecase) : (item | titlecase) }}
+        </p>
+        <small class="text-xs" *ngIf="itemDescription">{{
+          item[itemDescription] | titlecase
+        }}</small>
+      </div>
+    </ng-template>
+  </ng-select>
+</div>
+
+<div *ngIf="type === 'material'">
+  <mat-form-field
+    [ngClass]="inputClass"
+    class="w-full"
+    [appearance]="appearance"
+  >
+    <mat-label>{{ label }}</mat-label>
+    <mat-select [placeholder]="placeholder" [formControl]="control">
+      <mat-option *ngFor="let option of options" [value]="option.id">{{
+        option.name
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<mat-error *ngIf="control && !control?.pristine" class="text-xs -mt-5">{{
+  errorMessage
+}}</mat-error>

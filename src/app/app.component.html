@@ -1,4 +1,4 @@
-<div class="root">
+<div class="root" *ngIf="isAuthenticated; else showLogin">
   <app-nav-bar></app-nav-bar>
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav
@@ -7,12 +7,7 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
     >
-      <mat-list>
-        <app-menu-list-item
-          *ngFor="let item of navItems"
-          [item]="item"
-        ></app-menu-list-item>
-      </mat-list>
+      <app-side-bar [navItems]="navItems"></app-side-bar>
     </mat-sidenav>
     <mat-sidenav-content>
       <div class="main-content">
@@ -23,3 +18,7 @@
 </div>
 
 <app-git-version-modal></app-git-version-modal>
+
+<ng-template #showLogin>
+  <router-outlet></router-outlet>
+</ng-template>
