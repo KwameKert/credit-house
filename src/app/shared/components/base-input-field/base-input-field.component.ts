@@ -21,6 +21,8 @@ export class BaseInputFieldComponent implements OnInit {
 
   @Input() loading: boolean = false;
 
+  @Input() disabled: boolean = false;
+
   @Input() required: boolean = false;
 
   @Input() placeholder: string = '';

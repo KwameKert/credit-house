@@ -1,0 +1,55 @@
+<div mat-dialog-content class="flex justify-center">
+  <p class="text-lg font-semibold">{{ title }}</p>
+  <p class="text-base text-slate-700">{{ description }}</p>
+
+  <form
+    class="h-full"
+    [formGroup]="userForm"
+    (ngSubmit)="submitForm(userForm.value)"
+  >
+    <app-base-input-field
+      label="Full name"
+      type="text"
+      [control]="userForm.controls['fullName']"
+    ></app-base-input-field>
+
+    <app-base-input-field
+      label="Email"
+      type="text"
+      [control]="userForm.controls['email']"
+      [disabled]="true"
+    ></app-base-input-field>
+
+    <div class="mb-3">
+      <app-base-select-field
+        class="w-full mb-3"
+        label="Status"
+        hint="Your status  here "
+        [options]="status"
+        [control]="userForm.controls['status']"
+      ></app-base-select-field>
+    </div>
+
+    <div class="mb-3">
+      <app-base-select-field
+        class="w-full"
+        label="Role"
+        hint="Your roles  here "
+        [options]="roles"
+        [control]="userForm.controls['role']"
+      ></app-base-select-field>
+    </div>
+
+    <app-base-button
+      buttonClass="font-bold text-base btn-primary w-full"
+      buttonText="Submit"
+      type="submit"
+      color="primary"
+      variation="raised"
+      [disabled]="!userForm.valid"
+      loadingText="Signing in"
+    ></app-base-button>
+
+    <button mat-button mat-dialog-close>Cancel</button>
+  </form>
+</div>

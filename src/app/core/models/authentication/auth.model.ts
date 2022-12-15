@@ -6,11 +6,6 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  username: string;
-  email: string;
-  status: string;
-  role: string;
-  created_at: Date;
-  updated_at: Date;
+  user: User;
   token: string;
 }

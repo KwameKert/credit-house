@@ -43,25 +43,18 @@ export class AppComponent implements OnInit {
         displayName: 'Company',
         iconName: 'recent_actors',
         route: 'company',
-        children: [
-          {
-            displayName: 'Feedback',
-            iconName: 'feedback',
-            route: 'customer',
-          },
-        ],
+        // children: [
+        //   {
+        //     displayName: 'Feedback',
+        //     iconName: 'feedback',
+        //     route: 'customer',
+        //   },
+        // ],
       },
       {
-        displayName: 'Loan',
+        displayName: 'Users',
         iconName: 'recent_actors',
-        route: 'loan',
-        children: [
-          {
-            displayName: 'Feedback',
-            iconName: 'feedback',
-            route: 'load/asdf',
-          },
-        ],
+        route: 'user',
       },
     ];
   }
@@ -71,6 +64,7 @@ export class AppComponent implements OnInit {
       .pipe(select(fromAuthSelectors.selectIsAuthenticated))
       .subscribe((isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
+        console.log(this.isAuthenticated);
       });
   }
 }

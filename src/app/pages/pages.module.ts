@@ -9,6 +9,7 @@ import { CompanyModule } from './company/company.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { CustomerModule } from './customer/customer.module';
 import { DashboardComponent } from './settings/dashboard/dashboard.component';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -51,6 +52,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [DashboardComponent],
+  providers: [AuthGuard],
   imports: [
     CommonModule,
     LoginModule,

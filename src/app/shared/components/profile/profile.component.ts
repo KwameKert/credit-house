@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Icons } from 'src/app/core/models/common/icons';
+import { fromAuthActions } from 'src/app/store/actions';
+import { RootState } from 'src/app/store/models/root.model';
 
 @Component({
   selector: 'app-profile',
@@ -8,11 +11,11 @@ import { Icons } from 'src/app/core/models/common/icons';
 })
 export class ProfileComponent implements OnInit {
   public Icons = Icons;
-  constructor() {}
+  constructor(private store: Store<RootState>) {}
 
   ngOnInit(): void {}
 
   logout(): void {
-    console.log('logging out here');
+    this.store.dispatch(fromAuthActions.logout());
   }
 }

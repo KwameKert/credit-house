@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import {} from '@ngrx/store';
-import { of } from 'rxjs';
+import { of, pipe } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import * as fromAuthActions from '../actions/auth.actions';
 import {
@@ -15,7 +14,13 @@ import { AuthState } from '../models/auth.model';
 import { Router } from '@angular/router';
 import { Route } from 'src/app/core/models/common';
 import { LocalStorageService } from '../../core/services/local-storage.service';
-import { TOKEN } from '../../core/models/common/common.constants';
+import { TOKEN } from 'src/app/core/models/common/common.constants';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  ErrorAndConfirmationModalComponent,
+  ModalType,
+} from 'src/app/shared/components/error-and-confirmation-modal/error-and-confirmation-modal.component';
+import { ErrorAndConfirmDataModel } from 'src/app/shared/components/error-and-confirmation-modal/modal-content.model';
 
 @Injectable()
 export class AuthEffects {
@@ -24,7 +29,8 @@ export class AuthEffects {
     private router: Router,
     private actions$: Actions,
     private authService: AuthService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private dialog: MatDialog
   ) {}
 
   userLogin$ = createEffect((): any =>
@@ -44,19 +50,58 @@ export class AuthEffects {
     )
   );
 
+  userLogout$ = createEffect((): any => {
+    return this.actions$.pipe(
+      ofType(fromAuthActions.logout),
+      pipe(
+        map(() => {
+          return this.manageLogout();
+        })
+      )
+    );
+  });
+
+  userForceLogout$ = createEffect((): any => {
+    return this.actions$.pipe(
+      ofType(fromAuthActions.forceLogout),
+      pipe(
+        map(() => {
+          return this.manageLogout(true);
+        })
+      )
+    );
+  });
+
   private manageLoginSuccess(response: LoginResponse): TypedAction<string> {
-    this.localStorage.setStorage({ TOKEN: response.token });
+    this.localStorage.setStorage({ [TOKEN]: response.token });
     const authState: AuthState = {
       isAuthenticated: true,
       isLoggingIn: false,
-      user: {
-        username: response.username,
-        email: response.email,
-        status: response.status,
-        role: response.role,
-      },
+      user: response.user,
     };
     this.router.navigate([Route.COMPANY]);
     return fromAuthActions.loginSuccess(authState);
+  }
+
+  private manageLogout(forceLogout = false): TypedAction<string> {
+    this.localStorage.deleteStorage();
+    if (forceLogout) {
+      this.showExpirationTokenModal();
+    }
+
+    this.router.navigate([Route.LOGIN]);
+    return fromAuthActions.logoutSuccess();
+  }
+
+  private showExpirationTokenModal() {
+    const expiration: ErrorAndConfirmDataModel = {
+      message: 'Unauthorized',
+      description: 'You are being redirected to the login page',
+      modalType: ModalType.Error,
+    };
+    this.dialog.open(ErrorAndConfirmationModalComponent, {
+      data: expiration,
+      width: '560px',
+    });
   }
 }

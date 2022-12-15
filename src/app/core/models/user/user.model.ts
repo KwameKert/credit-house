@@ -1,6 +1,16 @@
 export interface User {
-  username: string;
-  email: string;
-  status: string;
-  role: string;
+  id?: string;
+  fullName?: string;
+  email?: string;
+  role?: number;
+  status?: number;
+}
+
+export interface CreateUser {
+  id?: string;
+  fullName?: string;
+  email?: string;
+  role?: number;
+  status?: number;
+  password?: string;
 }

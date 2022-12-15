@@ -3,18 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    h1 {
-        @apply text-3xl;
-      }
-      h2 {
-        @apply text-6xl;
-      }
-}
+
 *{
   font-family: Nunito, "Helvetica Neue", sans-serif !important;
 }
 html, body { height: 100%; margin: 0; }
+
 
 .bg-image {
   background-image: url("./assets/images/bg-image.jpeg");
@@ -29,6 +23,10 @@ html, body { height: 100%; margin: 0; }
   font-family: 'Material Icons' !important;
 }
 
+h1{
+  font-weight: 1000;
+  font-size: 60px;
+}
 
 .section-container {
   padding-left: 1.6rem;

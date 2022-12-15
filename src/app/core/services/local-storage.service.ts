@@ -1,27 +1,21 @@
 import { Injectable } from '@angular/core';
-import { TOKEN } from '../models/common/common.constants';
+import { STORE_NAME } from '../models/common/common.constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocalStorageService {
   private storage: Storage = localStorage;
-  private storeKey: string = TOKEN;
+  private storeKey: string = STORE_NAME;
 
   constructor() {}
 
   public getStorage(): any {
-    return this.storage.length !== 0
-      ? JSON.parse(this.storage.getItem(this.storeKey) || '{}')
-      : null;
+    return JSON.parse(this.storage.getItem(this.storeKey)!) ?? null;
   }
 
   public getStorageValue(name: string): any {
-    const item = JSON.parse(localStorage.getItem(this.storeKey) || '{}');
-    if (item === undefined || item === null) {
-      return null;
-    }
-    return this.storage.length !== 0 ? item[name] : null;
+    return this.getStorage()?.[name];
   }
 
   public setStorage(data: object): void {

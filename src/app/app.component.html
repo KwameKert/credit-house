@@ -5,11 +5,11 @@
       opened="{{ this.sideBarService.sideBarOpen }}"
       class="sidenav"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    >
-      <app-side-bar [navItems]="navItems"></app-side-bar>
+      [mode]="(isHandset$ | async) ? 'over' : 'side'">
+      <app-side-bar [navItems]="navItems"> </app-side-bar>
     </mat-sidenav>
     <mat-sidenav-content>
+      <app-loader></app-loader>
       <div class="main-content">
         <router-outlet></router-outlet>
       </div>
