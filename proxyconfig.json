@@ -1,7 +1,7 @@
 {
     "/api/v1": {
         "target": {
-            "host": "44.212.72.209",
+            "host": "dmsbknd.lwebserv.net",
             "protocol": "http:",
             "port": 8080
           },
