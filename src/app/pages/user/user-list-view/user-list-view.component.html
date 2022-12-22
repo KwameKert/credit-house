@@ -1,12 +1,14 @@
-<app-base-button
-  buttonClass="font-bold text-base btn-primary w-full"
-  buttonText="Add User"
-  type="submit"
-  buttonIcon="add"
-  color="primary"
-  variation="basic"
-  (click)="addUser()"
-></app-base-button>
+<div class="float-right flex space-x-4">
+  <app-base-button
+    buttonClass="font-bold text-base btn-primary w-full"
+    buttonText="Add User"
+    type="submit"
+    buttonIcon="add"
+    color="primary"
+    variation="stroked"
+    (click)="addUser()"
+  ></app-base-button>
+</div>
 
 <app-generic-table
   *ngIf="users"
