@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomerListViewComponent } from './customer-list-view.component';
+import { provideMockStore } from '@ngrx/store/testing';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CustomerListViewComponent', () => {
   let component: CustomerListViewComponent;
@@ -8,9 +11,14 @@ describe('CustomerListViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomerListViewComponent ]
-    })
-    .compileComponents();
+      imports: [MatDialogModule, RouterTestingModule],
+      declarations: [CustomerListViewComponent],
+      providers: [
+        provideMockStore({
+          initialState: { isAuthenticated: false, isLoggingIn: false },
+        }),
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

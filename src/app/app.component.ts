@@ -40,9 +40,9 @@ export class AppComponent implements OnInit {
   loadMenu(): void {
     this.navItems = [
       {
-        displayName: 'Company',
-        iconName: 'recent_actors',
-        route: 'company',
+        displayName: 'Customers',
+        iconName: 'contacts',
+        route: 'customer',
         // children: [
         //   {
         //     displayName: 'Feedback',
@@ -52,9 +52,16 @@ export class AppComponent implements OnInit {
         // ],
       },
       {
-        displayName: 'Users',
-        iconName: 'recent_actors',
+        displayName: 'Settings',
+        iconName: 'settings',
         route: 'user',
+        children: [
+          {
+            displayName: 'Users',
+            iconName: 'people',
+            route: 'user',
+          },
+        ],
       },
     ];
   }

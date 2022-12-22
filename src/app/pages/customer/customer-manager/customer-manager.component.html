@@ -1,0 +1,106 @@
+<app-base-button
+  buttonText="Back"
+  buttonClass="text-xs"
+  iconClass="text-base"
+  variation="basic"
+  buttonIcon="arrow_back"
+  color="accent"
+  routerLink="/customer"
+>
+</app-base-button>
+<p class="text-lg font-bold">Add Customer</p>
+<div class="flex gap-x-5">
+  <div class="flex-initial w-2/5">
+    <img src="assets/images/customer.svg" alt="" class="object-fill mt-5" />
+  </div>
+  <div class="flex-auto p-8 card rounded-2xl bg-white">
+    <p class="text-base text-slate-700">Fill details below</p>
+    <form
+      class="h-full"
+      [formGroup]="customerForm"
+      (ngSubmit)="submitForm(customerForm.value)"
+    >
+      <app-base-input-field
+        label="Customer Name"
+        type="text"
+        [control]="customerForm.controls['customerName']"
+      ></app-base-input-field>
+
+      <app-base-input-field
+        label="Customer Id"
+        type="text"
+        [control]="customerForm.controls['customerId']"
+      ></app-base-input-field>
+
+      <app-base-input-field
+        label="Phone Number"
+        type="text"
+        [control]="customerForm.controls['phoneNumber']"
+      ></app-base-input-field>
+
+      <div class="mb-3">
+        <app-base-select-field
+          class="w-full mb-3"
+          label="Id Type"
+          [options]="idType"
+          [control]="customerForm.controls['idType']"
+        ></app-base-select-field>
+      </div>
+
+      <app-base-input-field
+        label="Id Number"
+        type="text"
+        [control]="customerForm.controls['idNumber']"
+      ></app-base-input-field>
+
+      <app-base-input-field
+        label="Date of Birth"
+        type="date"
+        [control]="customerForm.controls['dateOfBirth']"
+      ></app-base-input-field>
+
+      <div class="mb-3">
+        <app-base-select-field
+          class="w-full mb-3"
+          label="Education Level"
+          [options]="educationalLevel"
+          [control]="customerForm.controls['educationalLevel']"
+        ></app-base-select-field>
+      </div>
+
+      <div class="mb-3">
+        <app-base-select-field
+          class="w-full mb-3"
+          label="Gender"
+          [options]="gender"
+          [control]="customerForm.controls['gender']"
+        ></app-base-select-field>
+      </div>
+
+      <div class="mb-3">
+        <app-base-select-field
+          class="w-full mb-3"
+          label="Marital Status"
+          [options]="maritalStatus"
+          [control]="customerForm.controls['maritalStatus']"
+        ></app-base-select-field>
+      </div>
+
+      <app-base-input-field
+        label="Company Code"
+        type="text"
+        [control]="customerForm.controls['companyCode']"
+      ></app-base-input-field>
+
+      <app-base-button
+        buttonClass="font-bold text-base btn-primary w-full"
+        buttonText="Submit"
+        type="submit"
+        color="primary"
+        variation="raised"
+        [disabled]="!customerForm.valid"
+        loadingText="Adding Customer"
+      ></app-base-button>
+    </form>
+  </div>
+</div>

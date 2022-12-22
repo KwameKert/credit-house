@@ -4,6 +4,7 @@ import { RootState } from 'src/app/store/models/root.model';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { reducers } from '../../../store/reducers/index';
 import { LoginFormComponent } from './login-form.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('LoginFormComponent', () => {
   let component: LoginFormComponent;
@@ -15,6 +16,7 @@ describe('LoginFormComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
+        SharedModule,
         StoreModule.forRoot(reducers),
       ],
 

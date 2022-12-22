@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { GitVersionModalComponent } from './git-version-modal.component';
 
 describe('GitVersionModalComponent', () => {
@@ -8,7 +8,8 @@ describe('GitVersionModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GitVersionModalComponent ]
+      declarations: [GitVersionModalComponent],
+      imports: [MatDialogModule],
     })
     .compileComponents();
   });

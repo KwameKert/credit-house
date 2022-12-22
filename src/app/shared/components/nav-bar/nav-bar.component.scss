@@ -1,16 +1,15 @@
 .mat-toolbar {
-    min-height: 50px !important; 
+    min-height: 50px !important;
     height: 50px !important;
   }
-  
+
 .mat-toolbar-row {
-    min-height: 50px !important; 
+    min-height: 50px !important;
     height: 50px !important;
 }
 
 .mat-toolbar.mat-primary {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 9999;
   }
-  

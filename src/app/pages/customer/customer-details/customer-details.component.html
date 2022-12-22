@@ -1,0 +1,43 @@
+<div class="w-full flex py-3 gap-x-6">
+  <ngx-avatar
+    [name]="customer?.customerName"
+    [round]="false"
+    [size]="120"
+  ></ngx-avatar>
+  <div class="ml-6 mb-5">
+    <p>
+      <span class="text-slate-500">Created on:</span>
+      <span class=""> {{ customer?.createdTime }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Education Level: </span>
+      <span class="">{{ customer?.educationalLevel }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Date of Birth</span>
+      <span class=""> {{ customer?.dateOfBirth }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Marital Status</span>
+      <span class=""> {{ customer?.maritalStatus }}</span>
+    </p>
+  </div>
+  <div class="ml-6 mb-5">
+    <p>
+      <span class="text-slate-500">Id Number:</span>
+      <span class=""> {{ customer?.idNumber }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Id Type:</span>
+      <span class=""> {{ customer?.idType }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Customer Id: </span>
+      <span class="">{{ customer?.customerId }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Company Code: </span>
+      <span class=""> {{ customer?.companyCode }}</span>
+    </p>
+  </div>
+</div>

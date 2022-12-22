@@ -23,9 +23,11 @@ export class AuthInterceptor implements HttpInterceptor {
       authReq = request.clone({
         setHeaders: {
           Authorization: `Bearer ${storedToken}`,
+          //...request?.headers,
         },
       });
     }
+
     return next.handle(authReq);
   }
 }

@@ -1,109 +1,27 @@
-<div class="flex justify-between">
-  <mat-form-field>
-    <mat-label>Filter page</mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Ex. ium"
-      #input
-    />
-  </mat-form-field>
+<app-base-button
+  buttonClass="font-bold text-base btn-primary w-full"
+  buttonText="Add User"
+  type="submit"
+  buttonIcon="add"
+  color="primary"
+  variation="basic"
+  (click)="addUser()"
+></app-base-button>
 
-  <app-base-button
-    buttonClass="font-bold text-base btn-primary w-full"
-    buttonText="Add User"
-    type="submit"
-    buttonIcon="add"
-    color="primary"
-    variation="basic"
-    (click)="addUser()"
-  ></app-base-button>
-</div>
-
-<table
-  mat-table
-  [dataSource]="dataSource"
-  multiTemplateDataRows
-  class="mat-elevation-z8"
+<app-generic-table
+  *ngIf="users"
+  [columnsToDisplay]="columnsToDisplay"
+  [displayColumns]="displayColumns"
+  [data]="users"
+  (selectedElementValue)="selectUser($event)"
+  [template]="userDetails"
 >
-  <ng-container
-    matColumnDef="{{ column.columnData }}"
-    *ngFor="let column of columnsToDisplay"
-  >
-    <th mat-header-cell *matHeaderCellDef>{{ column.columName }}</th>
-    <td mat-cell *matCellDef="let element">{{ element[column.columnData] }}</td>
-  </ng-container>
-  <ng-container matColumnDef="expand">
-    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
-    <td mat-cell *matCellDef="let element">
-      <button
-        mat-icon-button
-        aria-label="expand row"
-        (click)="
-          expandedElement = expandedElement === element ? null : element;
-          $event.stopPropagation()
-        "
-      >
-        <mat-icon *ngIf="expandedElement !== element"
-          >keyboard_arrow_down</mat-icon
-        >
-        <mat-icon *ngIf="expandedElement === element"
-          >keyboard_arrow_up</mat-icon
-        >
-      </button>
-    </td>
-  </ng-container>
+</app-generic-table>
 
-  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-  <ng-container matColumnDef="expandedDetail">
-    <div class="">
-      <td
-        mat-cell
-        *matCellDef="let element"
-        [attr.colspan]="columnsToDisplayWithExpand.length"
-      >
-        <div
-          class="example-element-detail"
-          [@detailExpand]="
-            element == expandedElement ? 'expanded' : 'collapsed'
-          "
-        >
-          <ngx-avatar
-            [name]="element.fullName"
-            [round]="false"
-            [size]="100"
-          ></ngx-avatar>
-
-          <!--  -->
-          <div class="ml-6 mb-5">
-            <p class="">Created on: 12 May 2019</p>
-            <p class="">Updated on: 12 May 2019</p>
-            <app-base-button
-              buttonClass="font-bold  btn-primary w-full"
-              buttonText="Edit User"
-              type="submit"
-              buttonIcon="edit"
-              color="primary"
-              variation="stroked"
-              (click)="editUser(element)"
-            ></app-base-button>
-          </div>
-        </div>
-      </td>
-    </div>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
-  <tr
-    mat-row
-    *matRowDef="let element; columns: columnsToDisplayWithExpand"
-    class="example-element-row"
-    [class.example-expanded-row]="expandedElement === element"
-    (click)="expandedElement = expandedElement === element ? null : element"
-  ></tr>
-  <tr
-    mat-row
-    *matRowDef="let row; columns: ['expandedDetail']"
-    class="example-detail-row"
-  ></tr>
-</table>
+<ng-template #userDetails>
+  <app-user-details
+    *ngIf="selectedUser"
+    (editUserEvent)="editUser($event)"
+    [user]="selectedUser"
+  ></app-user-details>
+</ng-template>

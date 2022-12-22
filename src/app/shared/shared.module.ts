@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuListItemComponent } from './components/menu-list-item/menu-list-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AvatarModule } from 'ngx-avatar';
+import { GenericTableComponent } from './components/generic-table/generic-table.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AvatarModule } from 'ngx-avatar';
     BaseSelectFieldComponent,
     BaseInputFieldComponent,
     BaseButtonComponent,
+    GenericTableComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +53,7 @@ import { AvatarModule } from 'ngx-avatar';
     ReactiveFormsModule,
     NgSelectModule,
     AvatarModule,
+    GenericTableComponent,
   ],
 })
 export class SharedModule {}

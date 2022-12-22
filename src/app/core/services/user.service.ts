@@ -33,7 +33,7 @@ export class UserService {
 
   updateUser(data: CreateUser): Observable<User> {
     return this.httpClient
-      .put<IApiResponse<User>>(`${environment.baseApi}/users/`, data)
+      .put<IApiResponse<User>>(`${environment.baseApi}/users/${data.id}`, data)
       .pipe(
         map((response: IApiResponse<User>) => {
           return response.data;

@@ -1,12 +1,11 @@
 <div class="container">
-    <i class="flex items-start flex-shrink-0" [ngClass]="[type, icons[type]]"></i>
-    <span class="flex items-center message text-white">{{ escapedMessage }}</span>
-    <button
-      class="flex items-end outline-none"
-      mat-button
-      (click)="closeDialog()"
-    >
-      Close
-    </button>
-  </div>
-  
+  <i class="flex items-start flex-shrink-0" [ngClass]="getClass()"></i>
+  <span class="flex items-center message text-white">{{ escapedMessage }}</span>
+  <button
+    class="flex items-end outline-none"
+    mat-button
+    (click)="closeDialog()"
+  >
+    Close
+  </button>
+</div>

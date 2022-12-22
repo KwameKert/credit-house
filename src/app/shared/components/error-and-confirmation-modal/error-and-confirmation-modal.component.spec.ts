@@ -1,5 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { provideMockStore } from '@ngrx/store/testing';
 import { ErrorAndConfirmationModalComponent } from './error-and-confirmation-modal.component';
 
 describe('ErrorAndConfirmationModalComponent', () => {
@@ -8,9 +13,19 @@ describe('ErrorAndConfirmationModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ErrorAndConfirmationModalComponent ]
-    })
-    .compileComponents();
+      imports: [MatDialogModule],
+      declarations: [ErrorAndConfirmationModalComponent],
+      providers: [
+        provideMockStore({
+          initialState: { isAuthenticated: false, isLoggingIn: false },
+        }),
+        {
+          provide: MatDialogRef,
+          useValue: {},
+        },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

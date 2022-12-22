@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { metaReducers, reducers } from './store/reducers';
 import * as fromAuthEffects from './store/effects/auth.effects';
 import * as fromUserEffects from './store/effects/user.effects';
+import * as fromCustomerEffects from './store/effects/customer.effects';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/http-interceptors/auth.interceptor';
 import { LoaderInterceptor } from './core/http-interceptors/loader.interceptor';
@@ -30,6 +31,7 @@ import { ErrorInterceptor } from './core/http-interceptors/error.interceptor';
     EffectsModule.forRoot([
       fromAuthEffects.AuthEffects,
       fromUserEffects.UserEffects,
+      fromCustomerEffects.CustomerEffects,
     ]),
   ],
   providers: [

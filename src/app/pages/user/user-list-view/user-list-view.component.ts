@@ -14,9 +14,10 @@ import { RootState } from 'src/app/store/models/root.model';
 import { fromUserSelectors } from 'src/app/store/selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { UserActionModalComponent } from '../user-action-modal/user-action-modal.component';
+import { TableColumn } from 'src/app/shared/components/generic-table/generc-table.model';
 import {
-  Actiontype,
   UserActionModel,
+  Actiontype,
 } from '../user-action-modal/user-action-model';
 
 @Component({
@@ -36,15 +37,17 @@ import {
 })
 export class UserListViewComponent implements OnInit {
   dataSource: MatTableDataSource<User> = new MatTableDataSource();
-  columnsToDisplay = [
-    { columName: 'Full Name', columnData: 'fullName' },
-    { columName: 'Email', columnData: 'email' },
-    { columName: 'Role', columnData: 'role' },
-    { columName: 'Status', columnData: 'status' },
+  columnsToDisplay: TableColumn[] = [
+    { columnName: 'Full Name', columnData: 'fullName' },
+    { columnName: 'Email', columnData: 'email' },
+    { columnName: 'Role', columnData: 'role' },
+    { columnName: 'Status', columnData: 'status' },
   ];
   displayColumns = ['fullName', 'email', 'role', 'status'];
   columnsToDisplayWithExpand = [...this.displayColumns, 'expand'];
   expandedElement: User | null | undefined;
+  users?: User[];
+  selectedUser?: User;
 
   constructor(private store: Store<RootState>, private dialog: MatDialog) {}
 
@@ -54,7 +57,6 @@ export class UserListViewComponent implements OnInit {
   }
 
   loadUsers(): void {
-    console.log('loading users');
     this.store.dispatch(fromUserActions.fetchUsers());
   }
 
@@ -62,7 +64,11 @@ export class UserListViewComponent implements OnInit {
     this.store
       .pipe(select(fromUserSelectors.selectUsers))
       .subscribe((users: User[]) => {
-        this.dataSource = new MatTableDataSource(users);
+        if (users.length) {
+          this.users = users;
+          this.dataSource = new MatTableDataSource(users);
+          console.log('data source', this.dataSource);
+        }
       });
   }
 
@@ -76,9 +82,11 @@ export class UserListViewComponent implements OnInit {
       data,
       width: '560px',
     });
-    dialogRef.afterClosed().subscribe((data: CreateUser) => {
-      if (data) {
-        this.store.dispatch(fromUserActions.addUser(data));
+    dialogRef.afterClosed().subscribe((user: CreateUser) => {
+      if (user) {
+        data.type == Actiontype.CREATE
+          ? this.store.dispatch(fromUserActions.addUser(user))
+          : this.store.dispatch(fromUserActions.editUser(user));
       }
     });
   }
@@ -110,5 +118,9 @@ export class UserListViewComponent implements OnInit {
       description: 'Fill form details to edit a new user',
     };
     return data;
+  }
+
+  selectUser(data: User) {
+    this.selectedUser = data;
   }
 }

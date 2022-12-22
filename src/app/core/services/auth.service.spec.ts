@@ -21,7 +21,7 @@ const loginResponse: LoginResponse = {
 };
 
 describe('AuthService', () => {
-  const url: string = `${environment.baseApi}/auth/login`;
+  const url: string = `${environment.baseApi}/auth/signin/`;
   let service: AuthService;
   let httpController: HttpTestingController;
 
@@ -43,14 +43,14 @@ describe('AuthService', () => {
       username: 'kwame',
       password: 'password',
     };
-    service.login(loginParams).subscribe((data) => {
-      expect(data).toEqual(loginResponse);
+    service.login(loginParams).subscribe((response: LoginResponse) => {
+      expect(response).toEqual(loginResponse);
     });
     const req = httpController.expectOne({
       method: 'POST',
       url: url,
     });
 
-    req.flush(loginResponse);
+    req.flush({ data: loginResponse, message: 'User Login successful' });
   });
 });

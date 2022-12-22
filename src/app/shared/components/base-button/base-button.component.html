@@ -55,7 +55,14 @@
       (click)="triggerButtonClick()"
       mat-stroked-button
     >
-      {{ loading ? loadingText : buttonText }}
+      <div class="flex flex-row space-x-2 justify-center items-center">
+        <div *ngIf="buttonIcon" class="flex self-center">
+          <mat-icon [ngClass]="iconClass">{{ buttonIcon }}</mat-icon>
+        </div>
+        <div class="flex self-center">
+          {{ loading ? loadingText : buttonText }}
+        </div>
+      </div>
     </button>
   </div>
   <div *ngSwitchCase="'icon'">

@@ -19,10 +19,10 @@ export class UserActionModalComponent implements OnInit {
   description!: string;
   userForm!: FormGroup;
   status = [
-    { id: 1, name: 'Active' },
-    { id: 0, name: 'Inactive' },
+    { id: 'ACTIVE', name: 'Active' },
+    { id: 'INACTIVE', name: 'Inactive' },
   ];
-  roles = [{ id: 1, name: 'Admin' }];
+  roles = [{ id: 'ADMIN', name: 'Admin' }];
 
   constructor(
     public dialog: MatDialog,

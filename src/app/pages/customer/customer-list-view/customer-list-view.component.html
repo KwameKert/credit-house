@@ -1,1 +1,39 @@
-<p>customer-list-view works!</p>
+<div class="float-right flex space-x-4">
+  <app-base-button
+    buttonClass="font-bold text-base btn-primary  px-2"
+    buttonText="Add Customer"
+    type="submit"
+    buttonIcon="add"
+    color="primary"
+    variation="stroked"
+    [disabled]="isCustomerLoading"
+    (click)="addCustomer()"
+  ></app-base-button>
+
+  <app-base-button
+    buttonClass="font-bold text-base btn-primary  ml-6"
+    buttonText="Batch Upload"
+    type="submit"
+    buttonIcon="cloud_upload"
+    color="accent"
+    variation="stroked"
+    [disabled]="isCustomerLoading"
+    (click)="triggerUploadCustomer()"
+  ></app-base-button>
+</div>
+
+<app-generic-table
+  [columnsToDisplay]="columnsToDisplay"
+  [displayColumns]="displayColumns"
+  [data]="customers"
+  (selectedElementValue)="onSelectCustomer($event)"
+  [template]="customerDetails"
+>
+</app-generic-table>
+
+<ng-template #customerDetails>
+  <app-customer-details
+    *ngIf="selectedCustomer"
+    [customer]="selectedCustomer"
+  ></app-customer-details>
+</ng-template>

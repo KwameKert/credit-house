@@ -1,0 +1,37 @@
+<div mat-dialog-content class="flex justify-center">
+  <p class="text-lg font-semibold">Bulk upload</p>
+  <p class="text-base text-slate-700">Upload a csv file</p>
+  <div class="my-4">
+    <input
+      type="file"
+      class="file-input"
+      (change)="onFileSelected($event)"
+      #fileUpload
+      accept=".csv"
+    />
+
+    <div class="file-upload">
+      {{ fileName || "No file uploaded yet." }}
+
+      <button
+        mat-mini-fab
+        color="primary"
+        class="upload-btn"
+        (click)="fileUpload.click()"
+      >
+        <mat-icon>attach_file</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <app-base-button
+    buttonClass="font-bold text-base btn-primary  ml-6"
+    buttonText="Upload"
+    type="submit"
+    color="accent"
+    [disabled]="!file"
+    variation="stroked"
+    (click)="uploadFile()"
+  ></app-base-button>
+  <button mat-button mat-dialog-close>Cancel</button>
+</div>

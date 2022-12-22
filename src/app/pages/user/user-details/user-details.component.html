@@ -1,0 +1,16 @@
+<div class="w-full flex">
+  <ngx-avatar [name]="user?.fullName" [round]="false" [size]="100"></ngx-avatar>
+  <div class="ml-6 mb-5">
+    <p class="">Created on: {{ user?.createdOn }}</p>
+    <p class="">Updated on: {{ user?.updatedOn }}</p>
+    <app-base-button
+      buttonClass="font-bold  btn-primary w-full"
+      buttonText="Edit User"
+      type="submit"
+      buttonIcon="edit"
+      color="primary"
+      variation="stroked"
+      (click)="editUser()"
+    ></app-base-button>
+  </div>
+</div>

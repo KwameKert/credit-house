@@ -18,7 +18,7 @@ export const loginFailure = createAction(USER_LOGIN_FAILURE);
 
 export const logout = createAction(USER_LOGOUT);
 
-export const forceLogout = createAction(USER_LOGOUT);
+export const forceLogout = createAction(FORCE_USER_LOGOUT);
 
 export const resetAuthStore = createAction(RESET_AUTH);
 

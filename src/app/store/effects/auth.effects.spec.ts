@@ -5,7 +5,7 @@ import { AuthState } from '../models/auth.model';
 import { provideMockStore } from '@ngrx/store/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { NotificationService } from '../../core/services/notification.service';
 import { SpyTestUtils } from '../../shared/test-utils/spy-test-utils.spec';
 import {
@@ -27,7 +27,7 @@ const loginResponse: LoginResponse = {
   token: 'werwerwerwerwerwerw',
 };
 describe('AuthEffects', () => {
-  const url: string = `${environment.baseApi}/auth/login`;
+  const url: string = `${environment.baseApi}/auth/signin/`;
 
   let action$: Observable<any>;
   let router: Router;
@@ -38,7 +38,8 @@ describe('AuthEffects', () => {
   beforeEach(() => {
     notificationServiceSpy = SpyTestUtils.createNotificationSpy();
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule, MatDialogModule],
+
       providers: [
         [
           AuthEffects,
@@ -82,7 +83,6 @@ describe('AuthEffects', () => {
     it('should fire a login and get a fail', (done) => {
       action$ = of(fromAuthActions.login);
       effects.userLogin$.pipe(isEmpty()).subscribe((isErrorThrown: any) => {
-        console.log(isErrorThrown);
         expect(notificationServiceSpy.error).toHaveBeenCalled();
       });
 
@@ -103,7 +103,10 @@ describe('AuthEffects', () => {
   }
 
   function mockBackEndLoginSuccess() {
-    httpController.expectOne({ method: 'POST', url }).flush(loginResponse);
+    httpController.expectOne({ method: 'POST', url }).flush({
+      data: loginResponse,
+      message: 'User Logged in successfully',
+    });
   }
 
   function mockBackEndLoginFailed() {

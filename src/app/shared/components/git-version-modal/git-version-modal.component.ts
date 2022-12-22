@@ -5,6 +5,7 @@ import {
   ModalType,
 } from '../error-and-confirmation-modal/error-and-confirmation-modal.component';
 import { ErrorAndConfirmDataModel } from '../error-and-confirmation-modal/modal-content.model';
+import { VERSION } from '../../../../environments/version';
 
 @Component({
   selector: 'app-git-version-modal',
@@ -14,10 +15,10 @@ import { ErrorAndConfirmDataModel } from '../error-and-confirmation-modal/modal-
 export class GitVersionModalComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
   gitVersionData: ErrorAndConfirmDataModel = {
-    message: 'GIT VERSION',
-    description: 'Nice description',
+    message: 'APP INFO',
+    description: `Application version is: ` + VERSION.version,
     modalType: ModalType.List,
-    listArray: ['NICE', 'ONE'],
+    listArray: [`GIT Hash: ${VERSION.hash}`],
   };
 
   ngOnInit(): void {
@@ -26,7 +27,6 @@ export class GitVersionModalComponent implements OnInit {
 
   @HostListener('keydown.shift.control.v')
   displayVersionInfo(): void {
-    console.log('im here');
     this.dialog.open(ErrorAndConfirmationModalComponent, {
       data: this.gitVersionData,
       width: '560px',
