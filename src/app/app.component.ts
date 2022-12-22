@@ -71,7 +71,6 @@ export class AppComponent implements OnInit {
       .pipe(select(fromAuthSelectors.selectIsAuthenticated))
       .subscribe((isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
-        console.log(this.isAuthenticated);
       });
   }
 }

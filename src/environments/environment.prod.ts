@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseApi: 'api/v1',
+  baseApi: 'http://dmsbknd.lwebserv.net/api/v1',
 };
