@@ -1,6 +1,6 @@
 {
     "/api/v1/**": {
-        "target":"htp://dmsbknd.lwebserv.net",
+        "target":"http://dmsbknd.lwebserv.net",
           "secure": false,
           "changeOrigin": true,
           "logLevel": "info"
