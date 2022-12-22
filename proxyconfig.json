@@ -1,6 +1,6 @@
 {
     "/api/v1/**": {
-        "target":"http://dmsbknd.lwebserv.net",
+        "target":"https://dmsbknd.motac.systems",
           "secure": false,
           "changeOrigin": true,
           "logLevel": "info"

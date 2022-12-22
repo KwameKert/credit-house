@@ -74,13 +74,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "credit-house:build:production",
-              "proxyConfig": "proxyconfig.json"
+              "browserTarget": "credit-house:build:production"
 
             },
             "development": {
-              "browserTarget": "credit-house:build:development",
-              "proxyConfig": "proxyconfig.json"
+              "browserTarget": "credit-house:build:development"
 
             }
           },
