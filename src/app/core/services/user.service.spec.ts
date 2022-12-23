@@ -49,12 +49,12 @@ describe('UserService', () => {
   });
 
   it('should call users and get mock response', () => {
-    service.fetchUsers().subscribe((response: any) => {
+    service.fetchUsers({ page: 0, size: 10 }).subscribe((response: any) => {
       expect(response).toEqual(usersFetch);
     });
     const req = httpController.expectOne({
       method: 'GET',
-      url: url,
+      url: url + '?page=0&size=10',
     });
 
     req.flush({

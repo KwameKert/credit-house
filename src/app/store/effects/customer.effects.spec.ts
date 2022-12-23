@@ -4,6 +4,7 @@ import { CustomerEffects } from './customer.effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('CustomerEffects', () => {
   let service: CustomerEffects;
@@ -12,7 +13,13 @@ describe('CustomerEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [CustomerEffects, provideMockActions(() => action$)],
+      providers: [
+        CustomerEffects,
+        provideMockActions(() => action$),
+        provideMockStore({
+          initialState: { users: [] },
+        }),
+      ],
     });
     service = TestBed.inject(CustomerEffects);
   });

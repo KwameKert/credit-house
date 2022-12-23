@@ -16,3 +16,8 @@ export interface CreateUser {
   status?: number;
   password?: string;
 }
+
+export interface UsersPage {
+  users: User[];
+  total: number;
+}

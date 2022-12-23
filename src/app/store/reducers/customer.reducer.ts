@@ -6,6 +6,12 @@ export const initialCustomerState: CustomerState = {
   customers: [],
   customerSaved: false,
   customersLoading: false,
+  customerTotal: 0,
+  pagination: {
+    page: 0,
+    size: 5,
+  },
+
   customer: {
     id: '',
     customerId: '',
@@ -28,9 +34,11 @@ const customerReducer = createReducer(
   initialCustomerState,
   on(
     fromCustomerActions.fetchCustomersSuccess,
-    (state: CustomerState, { customers }) => ({
+    (state: CustomerState, { data }) => ({
       ...state,
-      customers,
+      customers: data.customers,
+      customerTotal: data.total,
+      customersLoading: false,
     })
   ),
   on(fromCustomerActions.addCustomerSuccess, (state: CustomerState) => ({
@@ -45,10 +53,16 @@ const customerReducer = createReducer(
     ...state,
     customersLoading: true,
   })),
-  on(fromCustomerActions.uploadCustomersSuccess, (state: CustomerState) => ({
-    ...state,
-    customersLoading: false,
-  })),
+  on(
+    fromCustomerActions.paginateCustomer,
+    (state: CustomerState, { data }) => ({
+      ...state,
+      pagination: {
+        page: data.page,
+        size: data.size,
+      },
+    })
+  ),
   on(
     fromCustomerActions.getCustomersSuccess,
     (state: CustomerState, { customer }) => ({

@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IApiResponse } from '../models/common/core.model';
-import { Customer } from '../models/customer/customer.model';
+import { Customer, CustomersPage } from '../models/customer/customer.model';
 import { LocalStorageService } from './local-storage.service';
 import { TOKEN } from '../models/common/common.constants';
+import { Pagination } from 'src/app/shared/components/generic-table/generc-table.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,11 +30,6 @@ export class CustomerService {
   }
 
   uploadCustomers(data: any): Observable<any> {
-    console.log('data from servie -->', data);
-    // const storedToken = this.localStorageService.getStorageValue(TOKEN);
-    // const headers = new HttpHeaders();
-
-    // headers.append('Authorization', `Bearer ${storedToken}`);
     return this.httpClient
       .post<IApiResponse<any>>(`${this.url}/upload`, data)
       .pipe(
@@ -43,12 +39,16 @@ export class CustomerService {
       );
   }
 
-  fetchCustomers(): Observable<Customer[]> {
-    return this.httpClient.get<IApiResponse<Customer[]>>(`${this.url}`).pipe(
-      map((response: IApiResponse<Customer[]>) => {
-        return response.data;
-      })
-    );
+  fetchCustomers(pageData: Pagination): Observable<CustomersPage> {
+    return this.httpClient
+      .get<IApiResponse<CustomersPage>>(
+        `${this.url}?page=${pageData.page}&size=${pageData.size}`
+      )
+      .pipe(
+        map((response: IApiResponse<CustomersPage>) => {
+          return response.data;
+        })
+      );
   }
 
   getCustomerById(id: string): Observable<Customer> {

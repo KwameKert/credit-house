@@ -2,24 +2,31 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CustomerService } from '../../core/services/customer.service';
 import { fromCustomerActions, fromUserActions } from '../actions';
-import { concatMap, map } from 'rxjs';
-import { Customer } from '../../core/models/customer/customer.model';
+import { concatMap, map, withLatestFrom } from 'rxjs';
+import {
+  Customer,
+  CustomersPage,
+} from '../../core/models/customer/customer.model';
+import { Store } from '@ngrx/store';
+import { RootState } from '../models/root.model';
+import { fromCustomerSelectors } from '../selectors';
 
 @Injectable()
 export class CustomerEffects {
   constructor(
     private actions$: Actions,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private store: Store<RootState>
   ) {}
 
   fetchCustomers$ = createEffect((): any =>
     this.actions$.pipe(
       ofType(fromCustomerActions.fetchCustomers),
-      concatMap(() => {
-        return this.customerService.fetchCustomers().pipe(
-          map((response: Customer[]) => {
+      concatMap((request) => {
+        return this.customerService.fetchCustomers(request.data).pipe(
+          map((response: CustomersPage) => {
             return fromCustomerActions.fetchCustomersSuccess({
-              customers: response,
+              data: response,
             });
           })
         );
@@ -45,7 +52,7 @@ export class CustomerEffects {
   addCustomer$ = createEffect((): any =>
     this.actions$.pipe(
       ofType(fromCustomerActions.addCustomer),
-      concatMap((request: Customer) => {
+      concatMap((request) => {
         return this.customerService.createCustomer(request).pipe(
           map(() => {
             return fromCustomerActions.addCustomerSuccess();
@@ -58,11 +65,13 @@ export class CustomerEffects {
   uploadCustomers$ = createEffect((): any =>
     this.actions$.pipe(
       ofType(fromCustomerActions.uploadCustomers),
-      concatMap((request) => {
-        console.log('request ', request);
+      withLatestFrom(
+        this.store.select(fromCustomerSelectors.selectCustomerPagination)
+      ),
+      concatMap(([request, pagination]) => {
         return this.customerService.uploadCustomers(request.data).pipe(
           map(() => {
-            return fromCustomerActions.uploadCustomersSuccess();
+            return fromCustomerActions.fetchCustomers({ data: pagination });
           })
         );
       })

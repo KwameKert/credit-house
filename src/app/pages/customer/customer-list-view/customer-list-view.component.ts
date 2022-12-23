@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Route } from 'src/app/core/models/common';
 import { CustomerUploadComponent } from '../customer-upload/customer-upload.component';
 import { Subscription } from 'rxjs';
+import { Pagination } from 'src/app/shared/components/generic-table/generc-table.model';
 
 @Component({
   selector: 'app-customer-list-view',
@@ -32,6 +33,9 @@ export class CustomerListViewComponent implements OnInit, OnDestroy {
   expandedElement: Customer | null | undefined;
   customers!: Customer[];
   selectedCustomer?: Customer;
+  totalRows = 0;
+  pageSize = 5;
+  currentPage = 0;
 
   constructor(
     private store: Store<RootState>,
@@ -40,12 +44,16 @@ export class CustomerListViewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.loadCustomers();
+    this.loadCustomers({ size: this.pageSize, page: this.currentPage });
     this.initializeSelectors();
   }
 
-  loadCustomers(): void {
-    this.store.dispatch(fromCustomerActions.fetchCustomers());
+  loadCustomers(pageData: Pagination): void {
+    //taking pagination out since we redirect to a different page
+    // this.store.dispatch(
+    //   fromCustomerActions.paginateCustomer({ data: pageData })
+    // );
+    this.store.dispatch(fromCustomerActions.fetchCustomers({ data: pageData }));
   }
 
   initializeSelectors(): void {
@@ -54,6 +62,7 @@ export class CustomerListViewComponent implements OnInit, OnDestroy {
       .subscribe((customers: Customer[]) => {
         if (customers.length) {
           this.customers = customers;
+          this.dataSource = new MatTableDataSource(customers);
         }
       });
 
@@ -62,6 +71,15 @@ export class CustomerListViewComponent implements OnInit, OnDestroy {
         .pipe(select(fromCustomerSelectors.selectCustomerUploadStatus))
         .subscribe((customerLoading: boolean) => {
           this.isCustomerLoading = customerLoading;
+        })
+    );
+
+    this.subscriptions.add(
+      this.store
+        .pipe(select(fromCustomerSelectors.selectCustomerTotal))
+        .subscribe((customerTotal: number) => {
+          console.log('customer total', customerTotal);
+          this.totalRows = customerTotal;
         })
     );
   }

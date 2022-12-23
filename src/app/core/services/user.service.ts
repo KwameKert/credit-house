@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CreateUser, User } from '../models/user/user.model';
+import { CreateUser, User, UsersPage } from '../models/user/user.model';
 import { IApiResponse } from '../models/common/core.model';
+import { Pagination } from 'src/app/shared/components/generic-table/generc-table.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +12,13 @@ import { IApiResponse } from '../models/common/core.model';
 export class UserService {
   constructor(private httpClient: HttpClient) {}
 
-  fetchUsers(): Observable<User[]> {
+  fetchUsers(pageData: Pagination): Observable<UsersPage> {
     return this.httpClient
-      .get<IApiResponse<User[]>>(`${environment.baseApi}/users/`)
+      .get<IApiResponse<UsersPage>>(
+        `${environment.baseApi}/users/?page=${pageData.page}&size=${pageData.size}`
+      )
       .pipe(
-        map((response: IApiResponse<User[]>) => {
+        map((response: IApiResponse<UsersPage>) => {
           return response.data;
         })
       );

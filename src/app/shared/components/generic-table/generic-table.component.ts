@@ -14,9 +14,11 @@ import {
   Output,
   SimpleChanges,
   TemplateRef,
+  ViewChild,
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { TableColumn } from './generc-table.model';
+import { Pagination, TableColumn } from './generc-table.model';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-generic-table',
@@ -38,11 +40,18 @@ export class GenericTableComponent implements OnInit, OnChanges {
   @Input() columnsToDisplay!: TableColumn[];
   @Input() displayColumns!: string[];
   @Input() data!: any;
+  @Input() totalRows!: number;
+  @Input() pageSize!: number;
+  @Input() currentPage!: number;
   @Input() template!: TemplateRef<any>;
   @Input() expandableRow: boolean = true;
   @Output() selectedElementValue = new EventEmitter<any>();
+  @Output() loadPageData = new EventEmitter<Pagination>();
   columnsToDisplayWithExpand!: string[];
   expandedElement: any;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
 
   constructor() {}
 
@@ -50,6 +59,10 @@ export class GenericTableComponent implements OnInit, OnChanges {
     if (changes['data']) {
       this.columnsToDisplayWithExpand = [...this.displayColumns, 'expand'];
       this.dataSource = new MatTableDataSource(this.data);
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalRows;
+      });
     }
   }
 
@@ -64,5 +77,11 @@ export class GenericTableComponent implements OnInit, OnChanges {
     this.expandedElement = this.expandedElement === element ? null : element;
     $event.stopPropagation();
     this.selectedElementValue.emit(element);
+  }
+
+  pageChanged(event: PageEvent) {
+    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex;
+    this.loadPageData.emit({ page: this.currentPage, size: this.pageSize });
   }
 }

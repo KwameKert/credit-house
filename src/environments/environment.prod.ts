@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseApi: 'https://dmsbknd.motac.systems/api/v1',
+  baseApi: 'api/v1',
 };

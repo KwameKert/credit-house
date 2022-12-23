@@ -12,3 +12,8 @@ export interface Customer {
   createdTime?: string;
   companyCode?: string;
 }
+
+export interface CustomersPage {
+  customers: Customer[];
+  total: number;
+}
