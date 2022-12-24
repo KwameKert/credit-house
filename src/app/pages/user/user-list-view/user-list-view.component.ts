@@ -12,7 +12,7 @@ import {
   Pagination,
 } from 'src/app/shared/components/generic-table/generc-table.model';
 import {
-  UserActionModel,
+  ActionModel,
   Actiontype,
 } from '../user-action-modal/user-action-model';
 import { Subscription } from 'rxjs';
@@ -76,7 +76,7 @@ export class UserListViewComponent implements OnInit, OnDestroy {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  triggerActionUserDialog(data: UserActionModel) {
+  triggerActionUserDialog(data: ActionModel) {
     const dialogRef = this.dialog.open(UserActionModalComponent, {
       data,
       width: '560px',
@@ -100,8 +100,8 @@ export class UserListViewComponent implements OnInit, OnDestroy {
     this.triggerActionUserDialog(editActionModel);
   }
 
-  getCreateAction(): UserActionModel {
-    const data: UserActionModel = {
+  getCreateAction(): ActionModel {
+    const data: ActionModel = {
       type: Actiontype.CREATE,
       title: 'Add User',
       description: 'Fill form details to add a new user',
@@ -109,8 +109,8 @@ export class UserListViewComponent implements OnInit, OnDestroy {
     return data;
   }
 
-  getEditAction(user: User): UserActionModel {
-    const data: UserActionModel = {
+  getEditAction(user: User): ActionModel {
+    const data: ActionModel = {
       type: Actiontype.UPDATE,
       title: 'Edit User',
       data: user,

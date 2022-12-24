@@ -1,4 +1,4 @@
-export interface UserActionModel {
+export interface ActionModel {
   title: string;
   description: string;
   type: Actiontype;

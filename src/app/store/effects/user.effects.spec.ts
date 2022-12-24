@@ -6,11 +6,10 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from 'src/app/core/models/user/user.model';
 import { environment } from 'src/environments/environment';
 import { fromUserActions } from '../actions';
-import { UserState } from '../models/user.model';
 
 import { UserEffects } from './user.effects';
 import { fromUserSelectors } from '../selectors';
@@ -36,7 +35,7 @@ const userSuccess: User = {
   updatedOn: '2021-02-10',
 };
 
-describe('UserService', () => {
+describe('User Effects', () => {
   const url: string = `${environment.baseApi}/users/`;
 
   let action$: Observable<any>;
@@ -86,7 +85,6 @@ describe('UserService', () => {
       done();
     });
     it('should fire a create user and get a success', (done) => {
-      console.log('stating test here');
       action$ = of(
         fromUserActions.addUser({
           email: 'kwamekert@gmail.com',
@@ -129,13 +127,6 @@ describe('UserService', () => {
         message: 'Users fetched successfully',
       });
   }
-
-  // function getFetchUsersState(): UserState {
-  //   const userState: UserState = {
-  //     users: usersFetch,
-  //   };
-  //   return userState;
-  // }
 
   function createUserSuccessMock() {
     httpController

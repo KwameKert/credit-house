@@ -1,0 +1,50 @@
+<div mat-dialog-content class="flex justify-center">
+  <p class="text-lg font-semibold">{{ title }}</p>
+  <p class="text-base text-slate-700">{{ description }}</p>
+
+  <form
+    class="h-full"
+    [formGroup]="companyForm"
+    (ngSubmit)="submitForm(companyForm.value)"
+  >
+    <app-base-input-field
+      label="Full name"
+      type="text"
+      [control]="companyForm.controls['name']"
+    ></app-base-input-field>
+
+    <app-base-input-field
+      label="Institution Type"
+      type="text"
+      [control]="companyForm.controls['institutionType']"
+    ></app-base-input-field>
+
+    <app-base-input-field
+      label="Code"
+      type="text"
+      [control]="companyForm.controls['code']"
+    ></app-base-input-field>
+
+    <div class="mb-3">
+      <app-base-select-field
+        class="w-full mb-3"
+        label="Status"
+        hint="Your status  here "
+        [options]="status"
+        [control]="companyForm.controls['status']"
+      ></app-base-select-field>
+    </div>
+
+    <app-base-button
+      buttonClass="font-bold text-base btn-primary w-full"
+      buttonText="Submit"
+      type="submit"
+      color="primary"
+      variation="raised"
+      [disabled]="!companyForm.valid"
+      loadingText="Signing in"
+    ></app-base-button>
+
+    <button mat-button mat-dialog-close>Cancel</button>
+  </form>
+</div>

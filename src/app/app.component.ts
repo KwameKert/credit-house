@@ -52,6 +52,11 @@ export class AppComponent implements OnInit {
         // ],
       },
       {
+        displayName: 'Companies',
+        iconName: 'business_center',
+        route: 'company',
+      },
+      {
         displayName: 'Settings',
         iconName: 'settings',
         route: 'user',
