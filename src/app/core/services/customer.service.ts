@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 import { IApiResponse } from '../models/common/core.model';
 import { Customer, CustomersPage } from '../models/customer/customer.model';
 import { LocalStorageService } from './local-storage.service';
-import { TOKEN } from '../models/common/common.constants';
 import { Pagination } from 'src/app/shared/components/generic-table/generc-table.model';
 
 @Injectable({
@@ -14,10 +13,7 @@ import { Pagination } from 'src/app/shared/components/generic-table/generc-table
 export class CustomerService {
   private url: string = `${environment.baseApi}/customer`;
 
-  constructor(
-    private httpClient: HttpClient,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private httpClient: HttpClient) {}
 
   createCustomer(data: Customer): Observable<Customer> {
     return this.httpClient

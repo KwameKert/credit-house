@@ -13,6 +13,7 @@ import { fromUserActions } from '../actions';
 import { UserState } from '../models/user.model';
 
 import { UserEffects } from './user.effects';
+import { fromUserSelectors } from '../selectors';
 
 const usersFetch = [
   {
@@ -49,7 +50,16 @@ describe('UserService', () => {
       providers: [
         UserEffects,
         provideMockStore({
-          initialState: { users: [] },
+          initialState: { users: [], pagination: { page: 0, size: 10 } },
+          selectors: [
+            {
+              selector: fromUserSelectors.selectUserPagination,
+              value: {
+                page: 0,
+                size: 10,
+              },
+            },
+          ],
         }),
         provideMockActions(() => action$),
       ],
@@ -62,50 +72,62 @@ describe('UserService', () => {
     expect(effects).toBeTruthy();
   });
 
-  //write test to check if user list was tested
-
   describe('userFetch$', () => {
-    // it('should fire a fetch user and get a success', (done) => {
-    //   action$ = of(fromUserActions.fetchUsers);
-    //   effects.fetchUsers$.subscribe((result: any) => {
-    //     expect(result).toEqual(
-    //       fromUserActions.fetchUserSuccess({
-    //         data: { users: usersFetch, total: 10 },
-    //       })
-    //     );
-    //   });
-    //   fetchUserSuccessMock();
-    //   done();
-    // });
-    // it('should fire a create user and get a success', (done) => {
-    //   action$ = of(fromUserActions.addUser);
-    //   effects.addUser$.subscribe((result: any) => {
-    //     expect(result).toEqual(fromUserActions.fetchUsers());
-    //   });
-    //   createUserSuccessMock();
-    //   done();
-    // });
-    // it('should fire a update user and get a success', (done) => {
-    //   action$ = of(
-    //     fromUserActions.editUser({
-    //       fullName: 'kwamekert',
-    //       id: '23434343',
-    //       role: 1,
-    //     })
-    //   );
-    //   effects.updateUser$.subscribe((result: any) => {
-    //     expect(result).toEqual(fromUserActions.fetchUsers());
-    //   });
-    //   updateUserSuccessMock();
-    //   done();
-    // });
+    it('should fire a fetch user and get a success', (done) => {
+      action$ = of(fromUserActions.fetchUsers({ data: { page: 0, size: 10 } }));
+      effects.fetchUsers$.subscribe((result: any) => {
+        expect(result).toEqual(
+          fromUserActions.fetchUserSuccess({
+            data: { users: usersFetch, total: 10 },
+          })
+        );
+      });
+      fetchUserSuccessMock();
+      done();
+    });
+    it('should fire a create user and get a success', (done) => {
+      console.log('stating test here');
+      action$ = of(
+        fromUserActions.addUser({
+          email: 'kwamekert@gmail.com',
+          fullName: 'Kwame Asante',
+          role: 1,
+        })
+      );
+      effects.addUser$.subscribe((result: any) => {
+        expect(result).toEqual(
+          fromUserActions.fetchUsers({ data: { page: 0, size: 10 } })
+        );
+      });
+      createUserSuccessMock();
+      done();
+    });
+
+    it('should fire a update user and get a success', (done) => {
+      action$ = of(
+        fromUserActions.editUser({
+          fullName: 'kwamekert',
+          id: '23434343',
+          role: 1,
+        })
+      );
+      effects.updateUser$.subscribe((result: any) => {
+        expect(result).toEqual(
+          fromUserActions.fetchUsers({ data: { page: 0, size: 5 } })
+        );
+      });
+      updateUserSuccessMock();
+      done();
+    });
   });
 
   function fetchUserSuccessMock() {
-    httpController.expectOne({ method: 'GET', url }).flush({
-      data: { users: usersFetch, total: 10 },
-      message: 'Users fetched successfully',
-    });
+    httpController
+      .expectOne({ method: 'GET', url: url + '?page=0&size=10' })
+      .flush({
+        data: { users: usersFetch, total: 10 },
+        message: 'Users fetched successfully',
+      });
   }
 
   // function getFetchUsersState(): UserState {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { concatMap, map, withLatestFrom } from 'rxjs';
+import { EMPTY, concatMap, map, withLatestFrom } from 'rxjs';
 import { CreateUser, UsersPage } from 'src/app/core/models/user/user.model';
 import { UserService } from '../../core/services/user.service';
 import { fromUserActions } from '../actions';
