@@ -49,7 +49,6 @@ export class CompanyListViewComponent implements OnInit, OnDestroy {
     this.subscriptions = this.store
       .pipe(select(fromCompanySelectors.selectCompanies))
       .subscribe((companies: Company[]) => {
-        console.log('companyes', companies);
         if (companies.length) {
           this.companies = companies;
         }

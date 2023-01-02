@@ -56,6 +56,7 @@ export class CompanyActionModalComponent implements OnInit {
       name: [null, Validators.required],
       institutionType: [null, Validators.required],
       code: [null, Validators.required],
+      status: [null, Validators.required],
     });
   }
 
@@ -68,6 +69,7 @@ export class CompanyActionModalComponent implements OnInit {
       name: company.name,
       institutionType: company.institutionType,
       code: company.code,
+      status: company.status,
     });
   }
 }

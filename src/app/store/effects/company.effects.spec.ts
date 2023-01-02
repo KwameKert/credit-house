@@ -66,7 +66,6 @@ describe('CompanyEffects', () => {
       fromCompanyActions.fetchCompanies({ data: { page: 0, size: 10 } })
     );
     effects.fetchCompanies$.subscribe((result: any) => {
-      console.log();
       expect(result).toEqual(
         fromCompanyActions.fetchCompaniesSuccess({
           data: { companies: companiesFetch, total: 10 },

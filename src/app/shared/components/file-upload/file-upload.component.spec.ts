@@ -1,20 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CustomerUploadComponent } from './customer-upload.component';
 import {
-  MatDialogRef,
   MAT_DIALOG_DATA,
   MatDialogModule,
+  MatDialogRef,
 } from '@angular/material/dialog';
+import { FileUploadComponent } from './file-upload.component';
 
-describe('CustomerUploadComponent', () => {
-  let component: CustomerUploadComponent;
-  let fixture: ComponentFixture<CustomerUploadComponent>;
+describe('FileUploadComponent', () => {
+  let component: FileUploadComponent;
+  let fixture: ComponentFixture<FileUploadComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatDialogModule],
-      declarations: [CustomerUploadComponent],
       providers: [
         {
           provide: MatDialogRef,
@@ -22,11 +20,13 @@ describe('CustomerUploadComponent', () => {
         },
         { provide: MAT_DIALOG_DATA, useValue: {} },
       ],
+
+      declarations: [FileUploadComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CustomerUploadComponent);
+    fixture = TestBed.createComponent(FileUploadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -45,9 +45,7 @@ export const emptyLocalStorage = (reducerkeys: any[] | undefined) => {
         localStorage.setItem(key, '');
       });
     }
-  } catch (err) {
-    //console.log("ERROR===emptyLocalStorage==>>>")
-  }
+  } catch (err) {}
 };
 
 export const clearStorage = () => localStorage.clear();

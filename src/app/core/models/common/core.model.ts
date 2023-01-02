@@ -6,3 +6,8 @@ export interface IApiResponse<T> {
 export interface IApiResponsePage<T> {
   data: {};
 }
+
+export interface SelectModel {
+  id?: string | number;
+  name?: string;
+}

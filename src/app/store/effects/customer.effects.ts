@@ -49,6 +49,21 @@ export class CustomerEffects {
     )
   );
 
+  searchCustomerById$ = createEffect((): any =>
+    this.actions$.pipe(
+      ofType(fromCustomerActions.searchCustomerById),
+      concatMap((action) => {
+        return this.customerService.searchCustomerById(action.payload).pipe(
+          map((response: Customer[]) => {
+            return fromCustomerActions.searchCustomerByIdSuccess({
+              customers: response,
+            });
+          })
+        );
+      })
+    )
+  );
+
   addCustomer$ = createEffect((): any =>
     this.actions$.pipe(
       ofType(fromCustomerActions.addCustomer),

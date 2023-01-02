@@ -36,7 +36,7 @@ export class UserListViewComponent implements OnInit, OnDestroy {
   users?: User[];
   selectedUser?: User;
   totalRows = 0;
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 0;
   subscriptions!: Subscription;
 

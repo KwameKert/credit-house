@@ -57,6 +57,11 @@ export class AppComponent implements OnInit {
         route: 'company',
       },
       {
+        displayName: 'Transactions',
+        iconName: 'autorenew',
+        route: 'transaction',
+      },
+      {
         displayName: 'Settings',
         iconName: 'settings',
         route: 'user',

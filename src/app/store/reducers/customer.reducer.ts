@@ -69,6 +69,13 @@ const customerReducer = createReducer(
       ...state,
       customer,
     })
+  ),
+  on(
+    fromCustomerActions.searchCustomerByIdSuccess,
+    (state: CustomerState, { customers }) => ({
+      ...state,
+      customers,
+    })
   )
 );
 

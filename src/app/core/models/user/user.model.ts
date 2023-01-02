@@ -3,7 +3,7 @@ export interface User {
   fullName?: string;
   email?: string;
   role?: number;
-  status?: number;
+  status?: string;
   createdOn?: any;
   updatedOn?: any;
 }

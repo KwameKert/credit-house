@@ -53,4 +53,17 @@ export class UserService {
         })
       );
   }
+
+  updateUserStatus(id: string, status: string): Observable<User> {
+    return this.httpClient
+      .put<IApiResponse<User>>(
+        `${environment.baseApi}/users/${status}/${id}`,
+        {}
+      )
+      .pipe(
+        map((response: IApiResponse<User>) => {
+          return response.data;
+        })
+      );
+  }
 }

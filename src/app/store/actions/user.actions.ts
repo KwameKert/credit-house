@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { CreateUser, User } from 'src/app/core/models/user/user.model';
-import { UserState } from '../models/user.model';
+import { CreateUser } from 'src/app/core/models/user/user.model';
 import { Pagination } from 'src/app/shared/components/generic-table/generc-table.model';
 import { UsersPage } from '../../core/models/user/user.model';
 

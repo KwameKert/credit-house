@@ -7,7 +7,7 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { CustomerManagerComponent } from './customer-manager/customer-manager.component';
-import { CustomerUploadComponent } from './customer-upload/customer-upload.component';
+import { CustomerSearchFieldComponent } from './customer-search-field/customer-search-field.component';
 
 const routes: Routes = [
   {
@@ -32,8 +32,9 @@ const routes: Routes = [
     CustomerListViewComponent,
     CustomerDetailsComponent,
     CustomerManagerComponent,
-    CustomerUploadComponent,
+    CustomerSearchFieldComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
+  exports: [CustomerSearchFieldComponent],
 })
 export class CustomerModule {}

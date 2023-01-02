@@ -7,6 +7,9 @@ import { Pagination } from 'src/app/shared/components/generic-table/generc-table
 
 export const CUSTOMER_FETCH = '[Customer Page] Fetch customers';
 export const CUSTOMER_ADD = '[Customer Page] Add customer';
+export const CUSTOMER_SEARCH = '[Customer Page] Search customer';
+export const CUSTOMER_SEARCH_SUCCESS =
+  '[Customer Page] Search customer success';
 export const CUSTOMER_ADD_SUCCESS = '[Customer Page] Add customer Success';
 export const CUSTOMER_RESET_SAVED = '[Customer Page] Reset customer saved';
 export const CUSTOMER_FETCH_SUCCESS = '[Customer Page] Fetch customer success';
@@ -42,6 +45,16 @@ export const getCustomersSuccess = createAction(
 export const getCustomerById = createAction(
   CUSTOMER_GET,
   props<{ payload: string }>()
+);
+
+export const searchCustomerById = createAction(
+  CUSTOMER_SEARCH,
+  props<{ payload: string }>()
+);
+
+export const searchCustomerByIdSuccess = createAction(
+  CUSTOMER_SEARCH_SUCCESS,
+  props<{ customers: Customer[] }>()
 );
 
 export const paginateCustomer = createAction(

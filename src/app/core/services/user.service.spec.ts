@@ -25,7 +25,7 @@ const usersFetch: User[] = [
 const userSuccess: User = {
   email: 'kwamekert@gmail.com',
   role: 1,
-  status: 1,
+  status: 'ACTIVE',
   createdOn: '2021-02-10',
   updatedOn: '2021-02-10',
 };

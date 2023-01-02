@@ -54,4 +54,14 @@ export class CustomerService {
       })
     );
   }
+
+  searchCustomerById(customerId: string): Observable<Customer[]> {
+    return this.httpClient
+      .get<IApiResponse<Customer[]>>(`${this.url}/search/${customerId}`)
+      .pipe(
+        map((response: IApiResponse<Customer[]>) => {
+          return response.data;
+        })
+      );
+  }
 }

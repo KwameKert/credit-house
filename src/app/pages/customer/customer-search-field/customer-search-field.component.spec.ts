@@ -1,16 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogModule } from '@angular/material/dialog';
-import { UserDetailsComponent } from './user-details.component';
-import { HttpClientModule } from '@angular/common/http';
+
+import { CustomerSearchFieldComponent } from './customer-search-field.component';
 import { provideMockStore } from '@ngrx/store/testing';
-describe('UserDetailsComponent', () => {
-  let component: UserDetailsComponent;
-  let fixture: ComponentFixture<UserDetailsComponent>;
+
+describe('CustomerSearchFieldComponent', () => {
+  let component: CustomerSearchFieldComponent;
+  let fixture: ComponentFixture<CustomerSearchFieldComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserDetailsComponent],
-      imports: [MatDialogModule, HttpClientModule],
+      declarations: [CustomerSearchFieldComponent],
       providers: [
         provideMockStore({
           initialState: { isAuthenticated: false, isLoggingIn: false },
@@ -20,7 +19,7 @@ describe('UserDetailsComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserDetailsComponent);
+    fixture = TestBed.createComponent(CustomerSearchFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
