@@ -1,7 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { TransactionState } from '../models/transaction.model';
 import { fromTransactionActions } from '../actions';
-import { paginateCustomer } from '../actions/customer.actions';
 
 export const initialTransactionState: TransactionState = {
   transactions: [],

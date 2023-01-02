@@ -3,6 +3,7 @@ import * as fromUser from '../reducers/user.reducers';
 import * as fromCustomer from '../reducers/customer.reducer';
 import * as fromCompany from '../reducers/company.reducer';
 import * as fromTransaction from '../reducers/transaction.reducer';
+import * as fromLoan from './loan.reducer';
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { environment } from 'src/environments/environment';
@@ -14,9 +15,17 @@ export const reducers: ActionReducerMap<RootState> = {
   customer: fromCustomer.reducer,
   company: fromCompany.reducer,
   transaction: fromTransaction.reducer,
+  loan: fromLoan.reducer,
 };
 
-const reducerKeys = ['auth', 'user', 'customer', 'company', 'transaction'];
+const reducerKeys = [
+  'auth',
+  'user',
+  'customer',
+  'company',
+  'transaction',
+  'loan',
+];
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
 ): ActionReducer<any> {

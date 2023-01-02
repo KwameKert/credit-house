@@ -1,8 +1,9 @@
 export enum Route {
   USER = 'user',
-  LOAN = 'loan',
   COMPANY = 'company',
   TRANSACTION = 'transaction',
+  SAVINGS = 'transaction/savings',
+  LOAN = 'transaction/loan',
   CUSTOMER = 'customer',
   DASHBOARD = 'dashboard',
   LOGIN = 'login',

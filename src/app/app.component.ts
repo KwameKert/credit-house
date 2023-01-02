@@ -56,10 +56,23 @@ export class AppComponent implements OnInit {
         iconName: 'business_center',
         route: 'company',
       },
+
       {
         displayName: 'Transactions',
         iconName: 'autorenew',
         route: 'transaction',
+        children: [
+          {
+            displayName: 'Savings',
+            iconName: 'savings',
+            route: 'transaction/savings',
+          },
+          {
+            displayName: 'Loans',
+            iconName: 'credit_card',
+            route: 'transaction/loan',
+          },
+        ],
       },
       {
         displayName: 'Settings',

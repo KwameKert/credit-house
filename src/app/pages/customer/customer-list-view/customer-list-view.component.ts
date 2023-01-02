@@ -78,7 +78,6 @@ export class CustomerListViewComponent implements OnInit, OnDestroy {
       this.store
         .pipe(select(fromCustomerSelectors.selectCustomerTotal))
         .subscribe((customerTotal: number) => {
-          console.log('customer total', customerTotal);
           this.totalRows = customerTotal;
         })
     );

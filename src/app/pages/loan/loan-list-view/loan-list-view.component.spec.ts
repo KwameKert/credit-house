@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoanListViewComponent } from './loan-list-view.component';
+import { provideMockStore } from '@ngrx/store/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('LoanListViewComponent', () => {
   let component: LoanListViewComponent;
@@ -8,9 +10,14 @@ describe('LoanListViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoanListViewComponent ]
-    })
-    .compileComponents();
+      imports: [MatDialogModule],
+      declarations: [LoanListViewComponent],
+      providers: [
+        provideMockStore({
+          initialState: { isAuthenticated: false, isLoggingIn: false },
+        }),
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

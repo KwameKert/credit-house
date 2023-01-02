@@ -5,11 +5,7 @@ import { RootState } from '../models/root.model';
 import { Store } from '@ngrx/store';
 import { fromTransactionActions } from '../actions';
 import { concatMap, map, withLatestFrom } from 'rxjs';
-import {
-  Transaction,
-  TransactionsPage,
-} from 'src/app/core/models/transaction/transaction.model';
-import { addCustomer } from '../actions/customer.actions';
+import { TransactionsPage } from 'src/app/core/models/transaction/transaction.model';
 import { fromTransactionSelectors } from '../selectors';
 
 @Injectable()

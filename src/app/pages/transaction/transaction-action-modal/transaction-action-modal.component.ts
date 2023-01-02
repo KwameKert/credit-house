@@ -39,14 +39,12 @@ export class TransactionActionModalComponent implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<TransactionActionModalComponent>,
     @Inject(MAT_DIALOG_DATA) public modelData: ActionModel,
-    private fb: FormBuilder,
-    private store: Store<RootState>
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.initData(this.modelData);
     this.setupTransactionForm();
-    this.initializeSelectors();
   }
 
   initData(data: ActionModel) {
@@ -73,27 +71,5 @@ export class TransactionActionModalComponent implements OnInit {
       ...transaction,
       transactionDate,
     });
-  }
-
-  onSearch(data: any) {
-    let searchText = data.term;
-    this.store.dispatch(
-      fromCustomerActions.searchCustomerById({ payload: searchText })
-    );
-  }
-
-  initializeSelectors() {
-    this.subscription = this.store
-      .pipe(select(fromCustomerSelectors.selectCustomers))
-      .subscribe((customers: Customer[]) => {
-        if (customers.length) {
-          this.customers = customers.map((customer) => {
-            return {
-              id: customer.customerId,
-              name: `${customer.customerName} (${customer.customerId})`,
-            };
-          });
-        }
-      });
   }
 }

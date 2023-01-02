@@ -6,16 +6,17 @@ import { Route } from 'src/app/core/models/common';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CustomerModule } from '../customer/customer.module';
 import { TransactionActionModalComponent } from './transaction-action-modal/transaction-action-modal.component';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: Route.TRANSACTION,
+    redirectTo: Route.SAVINGS,
   },
   {
-    path: Route.TRANSACTION,
+    path: Route.SAVINGS,
     component: TransactionListViewComponent,
-    //canActivate: [AuthGuard, PageGuarda]
+    canActivate: [AuthGuard],
   },
 ];
 @NgModule({
