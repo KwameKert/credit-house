@@ -4,6 +4,7 @@ import { CustomerState } from './customer.model';
 import { CompanyState } from './company.model';
 import { TransactionState } from './transaction.model';
 import { LoanState } from './loan.model';
+import { DashboardState } from './dashboard.model';
 
 export interface RootState {
   auth: AuthState;
@@ -12,4 +13,5 @@ export interface RootState {
   company: CompanyState;
   transaction: TransactionState;
   loan: LoanState;
+  dashboard: DashboardState;
 }

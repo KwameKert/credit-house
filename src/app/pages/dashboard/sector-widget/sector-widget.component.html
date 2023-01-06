@@ -1,0 +1,13 @@
+<div class="p-8 card rounded-2xl bg-white">
+  <p class="text-lg font-bold">Sector status</p>
+  <canvas
+    width="550"
+    baseChart
+    class="chart"
+    [data]="barChartData"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [type]="barChartType"
+  >
+  </canvas>
+</div>

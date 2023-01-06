@@ -1,0 +1,14 @@
+<div class="grid grid-cols-3 gap-2">
+  <div class="col-span-2">
+    <div class="flex flex-col gap-y-2">
+      <app-sector-widget [data]="sector"> </app-sector-widget>
+      <app-education-widget [data]="education"> </app-education-widget>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <app-status-widget [active]="active" [inactive]="inactive">
+    </app-status-widget>
+    <app-gender-widget [data]="gender"> </app-gender-widget>
+  </div>
+</div>

@@ -10,11 +10,17 @@ import { TransactionModule } from './transaction/transaction.module';
 import { CustomerModule } from './customer/customer.module';
 import { DashboardComponent } from './settings/dashboard/dashboard.component';
 import { AuthGuard } from '../core/guards/auth.guard';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 const routes: Routes = [
   {
     path: '',
     children: [
+      {
+        path: Route.DASHBOARD,
+        loadChildren: () =>
+          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+      },
       {
         path: Route.COMPANY,
         loadChildren: () =>
@@ -32,6 +38,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./loan/loan.module').then((m) => m.LoanModule),
       },
+
       {
         path: Route.CUSTOMER,
         loadChildren: () =>
@@ -41,10 +48,6 @@ const routes: Routes = [
         path: Route.USER,
         loadChildren: () =>
           import('./user/user.module').then((m) => m.UserModule),
-      },
-      {
-        path: Route.DASHBOARD,
-        component: DashboardComponent,
       },
     ],
   },
@@ -61,6 +64,7 @@ const routes: Routes = [
     TransactionModule,
     CustomerModule,
     CompanyModule,
+    DashboardModule,
     RouterModule.forChild(routes),
   ],
 })

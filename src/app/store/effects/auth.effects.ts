@@ -79,7 +79,7 @@ export class AuthEffects {
       isLoggingIn: false,
       user: response.user,
     };
-    this.router.navigate([Route.COMPANY]);
+    this.router.navigate([Route.DASHBOARD]);
     return fromAuthActions.loginSuccess(authState);
   }
 

@@ -14,6 +14,7 @@ import * as fromCustomerEffects from './store/effects/customer.effects';
 import * as fromCompanyEffects from './store/effects/company.effects';
 import * as fromTransactionEffects from './store/effects/transaction.effects';
 import * as fromLoanEffects from './store/effects/loan.effects';
+import * as fromDashboardEffects from './store/effects/dashboard.effects';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/http-interceptors/auth.interceptor';
 import { LoaderInterceptor } from './core/http-interceptors/loader.interceptor';
@@ -38,6 +39,7 @@ import { ErrorInterceptor } from './core/http-interceptors/error.interceptor';
       fromCompanyEffects.CompanyEffects,
       fromTransactionEffects.TransactionEffect,
       fromLoanEffects.LoanEffects,
+      fromDashboardEffects.DashboardEffects,
     ]),
   ],
   providers: [

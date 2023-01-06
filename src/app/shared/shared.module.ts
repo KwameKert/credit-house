@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AvatarModule } from 'ngx-avatar';
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     NgSelectModule,
     BrowserAnimationsModule,
     AvatarModule,
+    NgChartsModule,
   ],
   exports: [
     MaterialModule,
@@ -57,6 +59,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     AvatarModule,
     GenericTableComponent,
     FileUploadComponent,
+    NgChartsModule,
   ],
 })
 export class SharedModule {}

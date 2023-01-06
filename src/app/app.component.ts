@@ -40,17 +40,16 @@ export class AppComponent implements OnInit {
   loadMenu(): void {
     this.navItems = [
       {
+        displayName: 'Dashboard',
+        iconName: 'home',
+        route: 'dashboard',
+      },
+      {
         displayName: 'Customers',
         iconName: 'contacts',
         route: 'customer',
-        // children: [
-        //   {
-        //     displayName: 'Feedback',
-        //     iconName: 'feedback',
-        //     route: 'customer',
-        //   },
-        // ],
       },
+
       {
         displayName: 'Companies',
         iconName: 'business_center',

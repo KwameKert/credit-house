@@ -4,7 +4,6 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IApiResponse } from '../models/common/core.model';
 import { Customer, CustomersPage } from '../models/customer/customer.model';
-import { LocalStorageService } from './local-storage.service';
 import { Pagination } from 'src/app/shared/components/generic-table/generc-table.model';
 
 @Injectable({
