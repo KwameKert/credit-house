@@ -7,13 +7,15 @@ import { fromTransactionActions } from '../actions';
 import { concatMap, map, withLatestFrom } from 'rxjs';
 import { TransactionsPage } from 'src/app/core/models/transaction/transaction.model';
 import { fromTransactionSelectors } from '../selectors';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Injectable()
 export class TransactionEffect {
   constructor(
     private actions$: Actions,
     private transactionService: TransactionService,
-    private store: Store<RootState>
+    private store: Store<RootState>,
+    private notificationService: NotificationService
   ) {}
 
   fetchTransactions$ = createEffect((): any =>
@@ -58,6 +60,9 @@ export class TransactionEffect {
       concatMap(([request, pagination]) => {
         return this.transactionService.uploadTransactions(request.data).pipe(
           map(() => {
+            this.notificationService.info(
+              'Processing Upload. Errors will be logged in Issues page'
+            );
             return fromTransactionActions.fetchTransactions({
               data: pagination,
             });

@@ -3,11 +3,11 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { NavItem } from './shared/components/menu-list-item/nav-item';
-import { fromAuthActions } from './store/actions';
 import { fromAuthSelectors } from './store/selectors';
 import { select, Store } from '@ngrx/store';
 import { RootState } from './store/models/root.model';
 import { SidebarService } from './core/services/sidebar.service';
+import { Route } from 'src/app/core/models/common';
 
 @Component({
   selector: 'app-root',
@@ -42,46 +42,51 @@ export class AppComponent implements OnInit {
       {
         displayName: 'Dashboard',
         iconName: 'home',
-        route: 'dashboard',
+        route: Route.DASHBOARD,
       },
       {
         displayName: 'Customers',
         iconName: 'contacts',
-        route: 'customer',
+        route: Route.CUSTOMER,
       },
 
       {
         displayName: 'Companies',
         iconName: 'business_center',
-        route: 'company',
+        route: Route.COMPANY,
       },
 
       {
         displayName: 'Transactions',
         iconName: 'autorenew',
-        route: 'transaction',
+        route: Route.TRANSACTION,
         children: [
           {
             displayName: 'Savings',
             iconName: 'savings',
-            route: 'transaction/savings',
+            route: Route.SAVINGS,
           },
           {
             displayName: 'Loans',
             iconName: 'credit_card',
-            route: 'transaction/loan',
+            route: Route.LOAN,
           },
         ],
       },
       {
         displayName: 'Settings',
         iconName: 'settings',
-        route: 'user',
+        route: Route.SETTING,
         children: [
           {
             displayName: 'Users',
             iconName: 'people',
-            route: 'user',
+            route: Route.USER,
+          },
+          {
+            displayName: 'Issues',
+            iconName: 'warning',
+            route: Route.ISSUES,
           },
         ],
       },

@@ -6,10 +6,12 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { fromLoanSelectors } from '../selectors';
 import { provideMockStore } from '@ngrx/store/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 describe('LoanService', () => {
   let effects: LoanEffects;
   let action$: Observable<any>;
+  let notificationServiceSpy: jasmine.SpyObj<NotificationService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -29,6 +31,10 @@ describe('LoanService', () => {
             },
           ],
         }),
+        {
+          provide: NotificationService,
+          useValue: notificationServiceSpy,
+        },
       ],
     });
     effects = TestBed.inject(LoanEffects);

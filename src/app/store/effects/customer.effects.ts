@@ -10,13 +10,15 @@ import {
 import { Store } from '@ngrx/store';
 import { RootState } from '../models/root.model';
 import { fromCustomerSelectors } from '../selectors';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Injectable()
 export class CustomerEffects {
   constructor(
     private actions$: Actions,
     private customerService: CustomerService,
-    private store: Store<RootState>
+    private store: Store<RootState>,
+    private notificationService: NotificationService
   ) {}
 
   fetchCustomers$ = createEffect((): any =>
@@ -86,6 +88,9 @@ export class CustomerEffects {
       concatMap(([request, pagination]) => {
         return this.customerService.uploadCustomers(request.data).pipe(
           map(() => {
+            this.notificationService.info(
+              'Processing Upload. Errors will be logged in Issues page'
+            );
             return fromCustomerActions.fetchCustomers({ data: pagination });
           })
         );

@@ -12,6 +12,7 @@ import { fromCompanySelectors } from '../selectors';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { fromCompanyActions, fromCustomerActions } from '../actions';
 import { Company } from 'src/app/core/models/company/company.model';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 const companySuccess: Company = {
   id: 'asdf234343',
@@ -32,6 +33,7 @@ describe('CompanyEffects', () => {
 
   let action$: Observable<any>;
   let httpController: HttpTestingController;
+  let notificationServiceSpy: jasmine.SpyObj<NotificationService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -51,6 +53,10 @@ describe('CompanyEffects', () => {
           ],
         }),
         provideMockActions(() => action$),
+        {
+          provide: NotificationService,
+          useValue: notificationServiceSpy,
+        },
       ],
     });
     effects = TestBed.inject(CompanyEffects);

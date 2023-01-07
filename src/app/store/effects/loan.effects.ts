@@ -7,14 +7,15 @@ import { Store } from '@ngrx/store';
 import { concatMap, map, withLatestFrom } from 'rxjs';
 import { RootState } from '../models/root.model';
 import { fromLoanSelectors } from '../selectors';
-import { addCustomer } from '../actions/customer.actions';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Injectable()
 export class LoanEffects {
   constructor(
     private actions$: Actions,
     private loanService: LoanService,
-    private store: Store<RootState>
+    private store: Store<RootState>,
+    private notificationService: NotificationService
   ) {}
 
   fetchLoans$ = createEffect((): any =>
@@ -55,6 +56,9 @@ export class LoanEffects {
       concatMap(([request, pagination]) => {
         return this.loanService.uploadLoans(request.data).pipe(
           map(() => {
+            this.notificationService.info(
+              'Processing Upload. Errors will be logged in Issues page'
+            );
             return fromLoanActions.fetchLoans({
               data: pagination,
             });

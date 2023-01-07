@@ -7,6 +7,7 @@ import { fromCompanyActions } from '../actions';
 import { CompanyPage } from '../../core/models/company/company.model';
 import { concatMap, map, withLatestFrom } from 'rxjs';
 import { fromCompanySelectors } from '../selectors';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Injectable({
   providedIn: 'root',

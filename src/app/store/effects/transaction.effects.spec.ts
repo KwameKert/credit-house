@@ -5,10 +5,12 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 import { provideMockStore } from '@ngrx/store/testing';
 import { fromTransactionSelectors } from '../selectors';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 describe('TransactionEffect', () => {
   let effect: TransactionEffect;
   let action$: Observable<any>;
+  let notificationServiceSpy: jasmine.SpyObj<NotificationService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -29,6 +31,10 @@ describe('TransactionEffect', () => {
             },
           ],
         }),
+        {
+          provide: NotificationService,
+          useValue: notificationServiceSpy,
+        },
       ],
     });
     effect = TestBed.inject(TransactionEffect);

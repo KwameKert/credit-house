@@ -7,4 +7,6 @@ export enum Route {
   CUSTOMER = 'customer',
   DASHBOARD = 'dashboard',
   LOGIN = 'login',
+  SETTING = 'setting',
+  ISSUES = 'setting/issues',
 }
