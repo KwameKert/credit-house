@@ -12,6 +12,7 @@ export interface CreateTransaction {
   accountNumber: string;
   transactionDate: Date;
   transactionType: string;
+  transactionId: string;
   companyCode: string;
 }
 

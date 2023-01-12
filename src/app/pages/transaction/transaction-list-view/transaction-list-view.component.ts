@@ -31,12 +31,14 @@ export class TransactionListViewComponent implements OnInit {
   columnsToDisplay: TableColumn[] = [
     { columnName: 'Customer ID', columnData: 'customerId' },
     { columnName: 'Account Number', columnData: 'accountNumber' },
+    { columnName: 'Transaction Id', columnData: 'transactionId' },
     { columnName: 'Transaction Type', columnData: 'transactionType' },
     { columnName: 'Transaction Date', columnData: 'transactionDate' },
   ];
   displayColumns = [
     'customerId',
     'accountNumber',
+    'transactionId',
     'transactionType',
     'transactionDate',
   ];

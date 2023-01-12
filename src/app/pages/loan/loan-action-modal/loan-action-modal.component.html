@@ -23,6 +23,12 @@
     ></app-base-input-field>
 
     <app-base-input-field
+    label="Transaction ID"
+    type="text"
+    [control]="loanForm.controls['transactionId']"
+  ></app-base-input-field>
+
+    <app-base-input-field
       label="Sectors"
       type="text"
       [control]="loanForm.controls['sectors']"

@@ -19,6 +19,12 @@
     ></app-base-input-field>
 
     <app-base-input-field
+      label="Transaction ID"
+      type="text"
+      [control]="transactionForm.controls['transactionId']"
+    ></app-base-input-field>
+
+    <app-base-input-field
       label="Account Number"
       type="text"
       [control]="transactionForm.controls['accountNumber']"

@@ -8,6 +8,7 @@ export interface Loan {
   interestAmount: number;
   loanStatus: number | string;
   lastPaymentDate: string;
+  transactionId: string;
   sectors: string;
   companyCode: string;
 }

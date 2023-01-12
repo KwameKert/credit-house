@@ -10,12 +10,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { CreateTransaction } from '../../../core/models/transaction/transaction.model';
-import { RootState } from 'src/app/store/models/root.model';
-import { Store, select } from '@ngrx/store';
-import { fromCustomerActions } from 'src/app/store/actions';
 import { Subscription } from 'rxjs';
-import { fromCustomerSelectors } from 'src/app/store/selectors';
-import { Customer } from 'src/app/core/models/customer/customer.model';
 import { SelectModel } from '../../../core/models/common/core.model';
 
 @Component({
@@ -61,6 +56,7 @@ export class TransactionActionModalComponent implements OnInit {
       companyCode: [null, Validators.required],
       accountNumber: [null, Validators.required],
       transactionDate: [null, Validators.required],
+      transactionId: [],
     });
   }
 

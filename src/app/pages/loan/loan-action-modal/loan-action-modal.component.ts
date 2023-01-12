@@ -59,6 +59,7 @@ export class LoanActionModalComponent implements OnInit {
       lastPaymentDate: [null, Validators.required],
       disbursedAmount: [null, Validators.required],
       interestAmount: [null, Validators.required],
+      transactionId: [],
     });
   }
 
