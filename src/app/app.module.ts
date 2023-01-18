@@ -11,6 +11,11 @@ import { metaReducers, reducers } from './store/reducers';
 import * as fromAuthEffects from './store/effects/auth.effects';
 import * as fromUserEffects from './store/effects/user.effects';
 import * as fromCustomerEffects from './store/effects/customer.effects';
+import * as fromCompanyEffects from './store/effects/company.effects';
+import * as fromTransactionEffects from './store/effects/transaction.effects';
+import * as fromLoanEffects from './store/effects/loan.effects';
+import * as fromDashboardEffects from './store/effects/dashboard.effects';
+import * as fromSettingEffects from './store/effects/setting.effects';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/http-interceptors/auth.interceptor';
 import { LoaderInterceptor } from './core/http-interceptors/loader.interceptor';
@@ -32,6 +37,11 @@ import { ErrorInterceptor } from './core/http-interceptors/error.interceptor';
       fromAuthEffects.AuthEffects,
       fromUserEffects.UserEffects,
       fromCustomerEffects.CustomerEffects,
+      fromCompanyEffects.CompanyEffects,
+      fromTransactionEffects.TransactionEffect,
+      fromLoanEffects.LoanEffects,
+      fromDashboardEffects.DashboardEffects,
+      fromSettingEffects.SettingEffects,
     ]),
   ],
   providers: [

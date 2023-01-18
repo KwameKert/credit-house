@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
@@ -33,6 +34,7 @@ import { MatTableModule } from '@angular/material/table';
     MatAutocompleteModule,
     MatProgressBarModule,
     MatTableModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatToolbarModule,
@@ -49,6 +51,7 @@ import { MatTableModule } from '@angular/material/table';
     MatAutocompleteModule,
     MatProgressBarModule,
     MatTableModule,
+    MatPaginatorModule,
   ],
 })
 export class MaterialModule {}

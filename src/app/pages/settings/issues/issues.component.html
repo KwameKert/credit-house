@@ -1,0 +1,21 @@
+<p class="text-slate-500">This page loads every {{ timeToRefresh }}secs</p>
+<!-- Todo: Create a toggle button to enable auto fresh -->
+<app-generic-table
+  [columnsToDisplay]="columnsToDisplay"
+  [displayColumns]="displayColumns"
+  [data]="issues"
+  [pageSize]="pageSize"
+  [currentPage]="currentPage"
+  [totalRows]="totalRows"
+  (selectedElementValue)="onSelectIssue($event)"
+  (loadPageData)="loadIssues($event)"
+  [template]="loanDetails"
+>
+</app-generic-table>
+
+<ng-template #loanDetails>
+  <app-issues-details
+    *ngIf="selectedIssue"
+    [issue]="selectedIssue"
+  ></app-issues-details>
+</ng-template>

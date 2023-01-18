@@ -15,7 +15,11 @@
   [columnsToDisplay]="columnsToDisplay"
   [displayColumns]="displayColumns"
   [data]="users"
+  [pageSize]="pageSize"
+  [currentPage]="currentPage"
+  [totalRows]="totalRows"
   (selectedElementValue)="selectUser($event)"
+  (loadPageData)="loadUsers($event)"
   [template]="userDetails"
 >
 </app-generic-table>

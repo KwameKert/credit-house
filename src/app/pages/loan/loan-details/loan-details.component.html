@@ -1,0 +1,56 @@
+<div class="w-full flex py-3 gap-x-6">
+  <div class="ml-6 mb-5">
+    <p>
+      <span class="text-slate-500">Customer ID :</span>
+      <span class=""> {{ loan?.customerId }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Account No. :</span>
+      <span class=""> {{ loan?.accountNumber }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Sectors :</span>
+      <span class=""> {{ loan?.sectors }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Company Code :</span>
+      <span class=""> {{ loan?.companyCode }}</span>
+    </p>
+  </div>
+
+  <div class="ml-6 mb-5">
+    <p>
+      <span class="text-slate-500">Loan Start Date :</span>
+      <span class=""> {{ loan?.loanStarDate }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Loan End Date :</span>
+      <span class=""> {{ loan?.loanEndDate }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Disbursed Amount :</span>
+      <span class=""> {{ loan?.disbursedAmount }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Interest Amount :</span>
+      <span class=""> {{ loan?.interestAmount }}</span>
+    </p>
+  </div>
+
+  <div class="ml-6 mb-5">
+    <p>
+      <span class="text-slate-500">Transaction ID :</span>
+      <span class=""> {{ loan?.transactionId }}</span>
+    </p>
+    <p>
+      <span class="text-slate-500">Loan Status :</span>
+      <span class="">
+        {{ loan?.loanStatus === 1 ? "ACTIVE" : "INACTIVE" }}</span
+      >
+    </p>
+    <p>
+      <span class="text-slate-500">Last Payment :</span>
+      <span class=""> {{ loan?.lastPaymentDate }}</span>
+    </p>
+  </div>
+</div>

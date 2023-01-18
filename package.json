@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "postinstall": "node git-version.js",
-    "start": "ng serve --proxy-config proxyconfig.json",
+    "start": "ng serve --configuration production",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -27,7 +27,10 @@
     "@ngrx/store": "^13.2.0",
     "@ngrx/store-devtools": "^14.3.2",
     "@w11k/git-info": "^1.1.2",
+    "chart.js": "^3.9.1",
+    "chartjs-plugin-datalabels": "^2.2.0",
     "lodash": "^4.17.21",
+    "ng2-charts": "^3.1.2",
     "ngrx-store-freeze": "^0.2.4",
     "ngrx-store-localstorage": "^14.0.0",
     "ngx-avatar": "^4.1.0",

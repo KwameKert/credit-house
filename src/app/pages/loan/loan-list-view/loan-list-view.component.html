@@ -1,1 +1,43 @@
-<p>loan-list-view works!</p>
+<div class="float-right flex space-x-4">
+  <app-base-button
+    buttonClass="font-bold text-base btn-primary  px-2"
+    buttonText="Add Loan"
+    type="submit"
+    buttonIcon="add"
+    color="primary"
+    variation="stroked"
+    [disabled]="isLoanLoading"
+    (click)="addLoan()"
+  ></app-base-button>
+
+  <app-base-button
+    buttonClass="font-bold text-base btn-primary  ml-6"
+    buttonText="Batch Upload"
+    type="submit"
+    buttonIcon="cloud_upload"
+    color="accent"
+    variation="stroked"
+    [disabled]="isLoanLoading"
+    (click)="triggerUploadLoan()"
+  ></app-base-button>
+</div>
+
+<app-generic-table
+  [columnsToDisplay]="columnsToDisplay"
+  [displayColumns]="displayColumns"
+  [data]="loans"
+  [pageSize]="pageSize"
+  [currentPage]="currentPage"
+  [totalRows]="totalRows"
+  (selectedElementValue)="onSelectLoan($event)"
+  (loadPageData)="loadLoans($event)"
+  [template]="loanDetails"
+>
+</app-generic-table>
+
+<ng-template #loanDetails>
+  <app-loan-details
+    *ngIf="selectedLoan"
+    [loan]="selectedLoan"
+  ></app-loan-details>
+</ng-template>

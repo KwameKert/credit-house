@@ -9,3 +9,13 @@ export const selectUsers = createSelector(
   userSelector,
   (state: UserState) => state.users
 );
+
+export const selectUserCount = createSelector(
+  userSelector,
+  (state: UserState) => state.userTotal
+);
+
+export const selectUserPagination = createSelector(
+  userSelector,
+  (state: UserState) => state.pagination
+);

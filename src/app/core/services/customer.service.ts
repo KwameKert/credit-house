@@ -3,9 +3,8 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IApiResponse } from '../models/common/core.model';
-import { Customer } from '../models/customer/customer.model';
-import { LocalStorageService } from './local-storage.service';
-import { TOKEN } from '../models/common/common.constants';
+import { Customer, CustomersPage } from '../models/customer/customer.model';
+import { Pagination } from 'src/app/shared/components/generic-table/generc-table.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +12,7 @@ import { TOKEN } from '../models/common/common.constants';
 export class CustomerService {
   private url: string = `${environment.baseApi}/customer`;
 
-  constructor(
-    private httpClient: HttpClient,
-    private localStorageService: LocalStorageService
-  ) {}
+  constructor(private httpClient: HttpClient) {}
 
   createCustomer(data: Customer): Observable<Customer> {
     return this.httpClient
@@ -29,11 +25,6 @@ export class CustomerService {
   }
 
   uploadCustomers(data: any): Observable<any> {
-    console.log('data from servie -->', data);
-    // const storedToken = this.localStorageService.getStorageValue(TOKEN);
-    // const headers = new HttpHeaders();
-
-    // headers.append('Authorization', `Bearer ${storedToken}`);
     return this.httpClient
       .post<IApiResponse<any>>(`${this.url}/upload`, data)
       .pipe(
@@ -43,12 +34,16 @@ export class CustomerService {
       );
   }
 
-  fetchCustomers(): Observable<Customer[]> {
-    return this.httpClient.get<IApiResponse<Customer[]>>(`${this.url}`).pipe(
-      map((response: IApiResponse<Customer[]>) => {
-        return response.data;
-      })
-    );
+  fetchCustomers(pageData: Pagination): Observable<CustomersPage> {
+    return this.httpClient
+      .get<IApiResponse<CustomersPage>>(
+        `${this.url}?page=${pageData.page}&size=${pageData.size}`
+      )
+      .pipe(
+        map((response: IApiResponse<CustomersPage>) => {
+          return response.data;
+        })
+      );
   }
 
   getCustomerById(id: string): Observable<Customer> {
@@ -57,5 +52,15 @@ export class CustomerService {
         return response.data;
       })
     );
+  }
+
+  searchCustomerById(customerId: string): Observable<Customer[]> {
+    return this.httpClient
+      .get<IApiResponse<Customer[]>>(`${this.url}/search/${customerId}`)
+      .pipe(
+        map((response: IApiResponse<Customer[]>) => {
+          return response.data;
+        })
+      );
   }
 }

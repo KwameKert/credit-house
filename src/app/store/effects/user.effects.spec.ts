@@ -6,13 +6,13 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from 'src/app/core/models/user/user.model';
 import { environment } from 'src/environments/environment';
 import { fromUserActions } from '../actions';
-import { UserState } from '../models/user.model';
 
 import { UserEffects } from './user.effects';
+import { fromUserSelectors } from '../selectors';
 
 const usersFetch = [
   {
@@ -30,12 +30,12 @@ const usersFetch = [
 const userSuccess: User = {
   email: 'kwamekert@gmail.com',
   role: 1,
-  status: 1,
+  status: 'ACTIVE',
   createdOn: '2021-02-10',
   updatedOn: '2021-02-10',
 };
 
-describe('UserService', () => {
+describe('User Effects', () => {
   const url: string = `${environment.baseApi}/users/`;
 
   let action$: Observable<any>;
@@ -49,7 +49,16 @@ describe('UserService', () => {
       providers: [
         UserEffects,
         provideMockStore({
-          initialState: { users: [] },
+          initialState: { users: [], pagination: { page: 0, size: 10 } },
+          selectors: [
+            {
+              selector: fromUserSelectors.selectUserPagination,
+              value: {
+                page: 0,
+                size: 10,
+              },
+            },
+          ],
         }),
         provideMockActions(() => action$),
       ],
@@ -62,24 +71,31 @@ describe('UserService', () => {
     expect(effects).toBeTruthy();
   });
 
-  //write test to check if user list was tested
-
   describe('userFetch$', () => {
     it('should fire a fetch user and get a success', (done) => {
-      action$ = of(fromUserActions.fetchUsers);
+      action$ = of(fromUserActions.fetchUsers({ data: { page: 0, size: 10 } }));
       effects.fetchUsers$.subscribe((result: any) => {
         expect(result).toEqual(
-          fromUserActions.fetchUserSuccess(getFetchUsersState())
+          fromUserActions.fetchUserSuccess({
+            data: { users: usersFetch, total: 10 },
+          })
         );
       });
       fetchUserSuccessMock();
       done();
     });
-
     it('should fire a create user and get a success', (done) => {
-      action$ = of(fromUserActions.addUser);
+      action$ = of(
+        fromUserActions.addUser({
+          email: 'kwamekert@gmail.com',
+          fullName: 'Kwame Asante',
+          role: 1,
+        })
+      );
       effects.addUser$.subscribe((result: any) => {
-        expect(result).toEqual(fromUserActions.fetchUsers());
+        expect(result).toEqual(
+          fromUserActions.fetchUsers({ data: { page: 0, size: 10 } })
+        );
       });
       createUserSuccessMock();
       done();
@@ -94,7 +110,9 @@ describe('UserService', () => {
         })
       );
       effects.updateUser$.subscribe((result: any) => {
-        expect(result).toEqual(fromUserActions.fetchUsers());
+        expect(result).toEqual(
+          fromUserActions.fetchUsers({ data: { page: 0, size: 5 } })
+        );
       });
       updateUserSuccessMock();
       done();
@@ -103,15 +121,11 @@ describe('UserService', () => {
 
   function fetchUserSuccessMock() {
     httpController
-      .expectOne({ method: 'GET', url })
-      .flush({ data: usersFetch, message: 'Users fetched successfully' });
-  }
-
-  function getFetchUsersState(): UserState {
-    const userState: UserState = {
-      users: usersFetch,
-    };
-    return userState;
+      .expectOne({ method: 'GET', url: url + '?page=0&size=10' })
+      .flush({
+        data: { users: usersFetch, total: 10 },
+        message: 'Users fetched successfully',
+      });
   }
 
   function createUserSuccessMock() {

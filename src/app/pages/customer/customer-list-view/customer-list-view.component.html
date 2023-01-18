@@ -26,7 +26,11 @@
   [columnsToDisplay]="columnsToDisplay"
   [displayColumns]="displayColumns"
   [data]="customers"
+  [pageSize]="pageSize"
+  [currentPage]="currentPage"
+  [totalRows]="totalRows"
   (selectedElementValue)="onSelectCustomer($event)"
+  (loadPageData)="loadCustomers($event)"
   [template]="customerDetails"
 >
 </app-generic-table>

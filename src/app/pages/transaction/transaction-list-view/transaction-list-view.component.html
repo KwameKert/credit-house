@@ -1,1 +1,36 @@
-<p>transaction-list-view works!</p>
+<div class="float-right flex space-x-4">
+  <app-base-button
+    buttonClass="font-bold text-base btn-primary  px-2"
+    buttonText="Add Transaction"
+    type="submit"
+    buttonIcon="add"
+    color="primary"
+    variation="stroked"
+    [disabled]="isTransactionLoading"
+    (click)="addTransaction()"
+  ></app-base-button>
+
+  <app-base-button
+    buttonClass="font-bold text-base btn-primary  ml-6"
+    buttonText="Batch Upload"
+    type="submit"
+    buttonIcon="cloud_upload"
+    color="accent"
+    variation="stroked"
+    [disabled]="isTransactionLoading"
+    (click)="triggerUploadTransaction()"
+  ></app-base-button>
+</div>
+
+<app-generic-table
+  [columnsToDisplay]="columnsToDisplay"
+  [displayColumns]="displayColumns"
+  [data]="transactions"
+  [pageSize]="pageSize"
+  [currentPage]="currentPage"
+  [totalRows]="totalRows"
+  (selectedElementValue)="onSelectTransaction($event)"
+  (loadPageData)="loadTransactions($event)"
+  [expandableRow]="false"
+>
+</app-generic-table>

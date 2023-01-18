@@ -52,6 +52,7 @@ export class ErrorAndConfirmationModalComponent implements OnInit {
   confirmDialog() {
     this.data.onConfirm?.().subscribe(
       (data) => {
+        console.log('confirm here');
         this.dialogRef.close(data);
       },
       (error) => {

@@ -1,1 +1,33 @@
-<h2>Company</h2>
+<div class="float-right flex space-x-4">
+  <app-base-button
+    buttonClass="font-bold text-base btn-primary w-full"
+    buttonText="Add Company"
+    type="submit"
+    buttonIcon="add"
+    color="primary"
+    variation="stroked"
+    (click)="addCompany()"
+  ></app-base-button>
+</div>
+
+<app-generic-table
+  *ngIf="companies"
+  [columnsToDisplay]="columnsToDisplay"
+  [displayColumns]="displayColumns"
+  [data]="companies"
+  [pageSize]="pageSize"
+  [currentPage]="currentPage"
+  [totalRows]="totalRows"
+  (selectedElementValue)="selectCompany($event)"
+  (loadPageData)="loadCompanies($event)"
+  [template]="userDetails"
+>
+</app-generic-table>
+
+<ng-template #userDetails>
+  <app-company-details
+    *ngIf="selectedCompany"
+    (editCompanyEvent)="editCompany($event)"
+    [company]="selectedCompany"
+  ></app-company-details>
+</ng-template>

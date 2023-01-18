@@ -70,17 +70,34 @@
     </div>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
-  <tr
-    mat-row
-    *matRowDef="let element; columns: columnsToDisplayWithExpand"
-    class="example-element-row"
-    [class.example-expanded-row]="expandedElement === element"
-    (click)="expandedElement = expandedElement === element ? null : element"
-  ></tr>
-  <tr
-    mat-row
-    *matRowDef="let row; columns: ['expandedDetail']"
-    class="example-detail-row"
-  ></tr>
+  <div *ngIf="expandableRow; else notExpanded">
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+    <tr
+      mat-row
+      *matRowDef="let element; columns: columnsToDisplayWithExpand"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="example-detail-row"
+    ></tr>
+  </div>
+
+  <ng-template #notExpanded>
+    <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+  </ng-template>
 </table>
+<mat-paginator
+  #paginator
+  [length]="totalRows"
+  [pageIndex]="currentPage"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="pageChanged($event)"
+  aria-label="Select page"
+>
+</mat-paginator>

@@ -5,7 +5,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { UserActionModel, Actiontype } from './user-action-model';
+import { ActionModel, Actiontype } from './user-action-model';
 import { CreateUser, User } from '../../../core/models/user/user.model';
 
 @Component({
@@ -27,7 +27,7 @@ export class UserActionModalComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<UserActionModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public modelData: UserActionModel,
+    @Inject(MAT_DIALOG_DATA) public modelData: ActionModel,
     private fb: FormBuilder
   ) {}
 
@@ -40,7 +40,7 @@ export class UserActionModalComponent implements OnInit {
     }
   }
 
-  initData(data: UserActionModel) {
+  initData(data: ActionModel) {
     this.actionType = data.type;
     this.title = data.title;
     this.description = data.description;

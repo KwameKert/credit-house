@@ -1,0 +1,61 @@
+<div mat-dialog-content class="flex justify-center">
+  <p class="text-lg font-semibold">{{ title }}</p>
+  <p class="text-base text-slate-700">{{ description }}</p>
+
+  <form
+    class="h-full"
+    [formGroup]="transactionForm"
+    (ngSubmit)="submitForm(transactionForm.value)"
+  >
+    <app-customer-search-field
+      [control]="transactionForm.controls['customerId']"
+    >
+    </app-customer-search-field>
+
+    <app-base-input-field
+      label="Company Code"
+      type="text"
+      [control]="transactionForm.controls['companyCode']"
+    ></app-base-input-field>
+
+    <app-base-input-field
+      label="Transaction ID"
+      type="text"
+      [control]="transactionForm.controls['transactionId']"
+    ></app-base-input-field>
+
+    <app-base-input-field
+      label="Account Number"
+      type="text"
+      [control]="transactionForm.controls['accountNumber']"
+    ></app-base-input-field>
+
+    <div class="mb-3">
+      <app-base-select-field
+        class="w-full mb-3"
+        label="Transaction Type"
+        hint="Your transaction type  here "
+        [options]="transactionType"
+        [control]="transactionForm.controls['transactionType']"
+      ></app-base-select-field>
+    </div>
+
+    <app-base-input-field
+      label="Transaction Date"
+      [control]="transactionForm.controls['transactionDate']"
+      type="datetime-local"
+    ></app-base-input-field>
+
+    <app-base-button
+      buttonClass="font-bold text-base btn-primary w-full"
+      buttonText="Submit"
+      type="submit"
+      color="primary"
+      variation="raised"
+      [disabled]="!transactionForm.valid"
+      loadingText="Saving"
+    ></app-base-button>
+
+    <button mat-button mat-dialog-close>Cancel</button>
+  </form>
+</div>

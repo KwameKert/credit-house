@@ -1,8 +1,29 @@
-<div class="w-full flex">
-  <ngx-avatar [name]="user?.fullName" [round]="false" [size]="100"></ngx-avatar>
+<div class="w-full flex py-3">
+  <div>
+    <ngx-avatar
+      [name]="user?.fullName"
+      [round]="false"
+      [size]="100"
+    ></ngx-avatar>
+  </div>
+
   <div class="ml-6 mb-5">
     <p class="">Created on: {{ user?.createdOn }}</p>
     <p class="">Updated on: {{ user?.updatedOn }}</p>
+  </div>
+
+  <div class="ml-4">
+    <div class="mb-2">
+      <app-base-button
+        buttonClass="font-bold btn-primary w-full"
+        [buttonText]="this.status"
+        [buttonIcon]="this.statusIcon"
+        color="accent"
+        variation="stroked"
+        (click)="toggleUserStatus()"
+      ></app-base-button>
+    </div>
+
     <app-base-button
       buttonClass="font-bold  btn-primary w-full"
       buttonText="Edit User"

@@ -21,3 +21,13 @@ export const selectCustomerUploadStatus = createSelector(
   customerSelector,
   (state: CustomerState) => state.customersLoading
 );
+
+export const selectCustomerTotal = createSelector(
+  customerSelector,
+  (state: CustomerState) => state.customerTotal
+);
+
+export const selectCustomerPagination = createSelector(
+  customerSelector,
+  (state: CustomerState) => state.pagination
+);

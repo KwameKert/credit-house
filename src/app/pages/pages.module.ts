@@ -8,13 +8,19 @@ import { LoanModule } from './loan/loan.module';
 import { CompanyModule } from './company/company.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { CustomerModule } from './customer/customer.module';
-import { DashboardComponent } from './settings/dashboard/dashboard.component';
 import { AuthGuard } from '../core/guards/auth.guard';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { SettingsModule } from './settings/settings.module';
 
 const routes: Routes = [
   {
     path: '',
     children: [
+      {
+        path: Route.DASHBOARD,
+        loadChildren: () =>
+          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+      },
       {
         path: Route.COMPANY,
         loadChildren: () =>
@@ -32,6 +38,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./loan/loan.module').then((m) => m.LoanModule),
       },
+
       {
         path: Route.CUSTOMER,
         loadChildren: () =>
@@ -43,15 +50,16 @@ const routes: Routes = [
           import('./user/user.module').then((m) => m.UserModule),
       },
       {
-        path: Route.DASHBOARD,
-        component: DashboardComponent,
+        path: Route.ISSUES,
+        loadChildren: () =>
+          import('./settings/settings.module').then((m) => m.SettingsModule),
       },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [],
   providers: [AuthGuard],
   imports: [
     CommonModule,
@@ -61,6 +69,8 @@ const routes: Routes = [
     TransactionModule,
     CustomerModule,
     CompanyModule,
+    DashboardModule,
+    SettingsModule,
     RouterModule.forChild(routes),
   ],
 })

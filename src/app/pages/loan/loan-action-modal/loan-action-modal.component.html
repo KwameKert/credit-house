@@ -1,0 +1,93 @@
+<div mat-dialog-content class="flex justify-center">
+  <p class="text-lg font-semibold">{{ title }}</p>
+  <p class="text-base text-slate-700">{{ description }}</p>
+
+  <form
+    class="h-full"
+    [formGroup]="loanForm"
+    (ngSubmit)="submitForm(loanForm.value)"
+  >
+    <app-customer-search-field [control]="loanForm.controls['customerId']">
+    </app-customer-search-field>
+
+    <app-base-input-field
+      label="Company Code"
+      type="text"
+      [control]="loanForm.controls['companyCode']"
+    ></app-base-input-field>
+
+    <app-base-input-field
+      label="Account Number"
+      type="text"
+      [control]="loanForm.controls['accountNumber']"
+    ></app-base-input-field>
+
+    <app-base-input-field
+    label="Transaction ID"
+    type="text"
+    [control]="loanForm.controls['transactionId']"
+  ></app-base-input-field>
+
+    <app-base-input-field
+      label="Sectors"
+      type="text"
+      [control]="loanForm.controls['sectors']"
+    ></app-base-input-field>
+
+    <div class="mb-3">
+      <app-base-select-field
+        class="w-full mb-3"
+        label="Status"
+        hint="Your loan  here "
+        [options]="status"
+        [control]="loanForm.controls['loanStatus']"
+      ></app-base-select-field>
+    </div>
+
+    <div class="flex justify-between">
+      <app-base-input-field
+        label="Loan Start Date"
+        [control]="loanForm.controls['loanStarDate']"
+        type="date"
+      ></app-base-input-field>
+
+      <app-base-input-field
+        label="Loan End Date"
+        [control]="loanForm.controls['loanEndDate']"
+        type="date"
+      ></app-base-input-field>
+    </div>
+
+    <div class="flex justify-between">
+      <app-base-input-field
+        label="Disbursed Amount"
+        [control]="loanForm.controls['disbursedAmount']"
+        type="number"
+      ></app-base-input-field>
+
+      <app-base-input-field
+        label="Interest Amount"
+        [control]="loanForm.controls['interestAmount']"
+        type="number"
+      ></app-base-input-field>
+    </div>
+
+    <app-base-input-field
+      label="Transaction Date"
+      [control]="loanForm.controls['lastPaymentDate']"
+      type="date"
+    ></app-base-input-field>
+
+    <app-base-button
+      buttonClass="font-bold text-base btn-primary w-full"
+      buttonText="Submit"
+      type="submit"
+      color="primary"
+      variation="raised"
+      [disabled]="!loanForm.valid"
+      loadingText="Saving"
+    ></app-base-button>
+
+    <button mat-button mat-dialog-close>Cancel</button>
+  </form>
+</div>

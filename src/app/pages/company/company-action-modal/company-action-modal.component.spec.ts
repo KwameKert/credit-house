@@ -1,20 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomerUploadComponent } from './customer-upload.component';
+import { CompanyActionModalComponent } from './company-action-modal.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {
+  MatDialogModule,
   MatDialogRef,
   MAT_DIALOG_DATA,
-  MatDialogModule,
 } from '@angular/material/dialog';
 
-describe('CustomerUploadComponent', () => {
-  let component: CustomerUploadComponent;
-  let fixture: ComponentFixture<CustomerUploadComponent>;
+describe('CompanyActionModalComponent', () => {
+  let component: CompanyActionModalComponent;
+  let fixture: ComponentFixture<CompanyActionModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatDialogModule],
-      declarations: [CustomerUploadComponent],
+      declarations: [CompanyActionModalComponent],
+      imports: [MatDialogModule, ReactiveFormsModule, FormsModule],
       providers: [
         {
           provide: MatDialogRef,
@@ -26,7 +27,7 @@ describe('CustomerUploadComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CustomerUploadComponent);
+    fixture = TestBed.createComponent(CompanyActionModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

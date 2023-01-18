@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { TransactionListViewComponent } from './transaction-list-view.component';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('TransactionListViewComponent', () => {
   let component: TransactionListViewComponent;
@@ -8,9 +10,14 @@ describe('TransactionListViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TransactionListViewComponent ]
-    })
-    .compileComponents();
+      imports: [MatDialogModule],
+      declarations: [TransactionListViewComponent],
+      providers: [
+        provideMockStore({
+          initialState: { isAuthenticated: false, isLoggingIn: false },
+        }),
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

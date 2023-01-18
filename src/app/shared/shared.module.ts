@@ -16,6 +16,8 @@ import { MenuListItemComponent } from './components/menu-list-item/menu-list-ite
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AvatarModule } from 'ngx-avatar';
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { GenericTableComponent } from './components/generic-table/generic-table.
     BaseInputFieldComponent,
     BaseButtonComponent,
     GenericTableComponent,
+    FileUploadComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +42,7 @@ import { GenericTableComponent } from './components/generic-table/generic-table.
     NgSelectModule,
     BrowserAnimationsModule,
     AvatarModule,
+    NgChartsModule,
   ],
   exports: [
     MaterialModule,
@@ -54,6 +58,8 @@ import { GenericTableComponent } from './components/generic-table/generic-table.
     NgSelectModule,
     AvatarModule,
     GenericTableComponent,
+    FileUploadComponent,
+    NgChartsModule,
   ],
 })
 export class SharedModule {}

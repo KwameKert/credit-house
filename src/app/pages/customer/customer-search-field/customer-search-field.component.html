@@ -1,0 +1,10 @@
+<ng-select
+  class="select-lg mt-2 w-full mb-3"
+  [items]="customers"
+  bindLabel="name"
+  bindValue="id"
+  placeholder="Customer ID"
+  [formControl]="control"
+  (search)="onSearch($event)"
+>
+</ng-select>
