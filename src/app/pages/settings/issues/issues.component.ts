@@ -36,7 +36,8 @@ export class IssuesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadIssues({ size: this.pageSize, page: this.currentPage });
     this.initializeSelectors();
-    this.triggerTimer();
+    //disable timer
+    // this.triggerTimer();
   }
 
   loadIssues(pageData: Pagination): void {
